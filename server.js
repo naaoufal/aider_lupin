@@ -16,6 +16,6 @@ app.use(cors());
 
 
 // start the server
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3001
 var server = app.listen(port, () => console.log("the server is started"));
 var io = socket(server)
