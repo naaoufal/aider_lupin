@@ -8,5 +8,9 @@ const superCon = require("../controllers/superAdmins")
 
 router.get("/all", access, superCon.all)
 
+router.post("/auth", superCon.login)
+
+router.post("/add", superCon.createOne)
+
 
 module.exports = router

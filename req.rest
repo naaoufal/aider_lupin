@@ -1,1 +1,22 @@
 GET http://localhost:3001/api/superadmins/all
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJ0ZXN0QGdtYWlsLmNvbSIsImFkcGFzc3dvcmQiOiJhemVyIiwiaWF0IjoxNjE1ODMyNjQwfQ.nLvoaGsrEwSH0hd-rz204d2qU9k2ib1GqVAy6nXi3Xw
+
+###
+
+POST http://localhost:3001/api/superadmins/add
+Content-Type: application/json
+
+{
+    "fullname" : "naoufal",
+    "email" : "test@gmail.com",
+    "password" : "azer"
+}
+
+###
+POST http://localhost:3001/api/superadmins/auth
+Content-Type: application/json
+
+{
+    "email" : "test@gmail.com",
+    "password" : "azer"
+}
