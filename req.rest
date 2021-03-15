@@ -15,7 +15,7 @@ POST http://localhost:3001/api/superadmins/auth
 Content-Type: application/json
 
 {
-    "email" : "test@gmail.com",
+    "email" : "benjamin@gmail.com",
     "password" : "azer"
 }
 
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 POST http://localhost:3001/api/admins/add
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJ0ZXN0QGdtYWlsLmNvbSIsImFkcGFzc3dvcmQiOiJhemVyIiwiaWF0IjoxNjE1ODMyNjQwfQ.nLvoaGsrEwSH0hd-rz204d2qU9k2ib1GqVAy6nXi3Xw
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qYW1pbkBnbWFpbC5jb20iLCJhZHBhc3N3b3JkIjoiYXplciIsImlhdCI6MTYxNTgzODg1NH0.rxibXazYkh_f-2iHG4oF4MZJFADaTZvsvGlR-AVhHog
 
 {
     "fullname" : "naoufal",
@@ -31,3 +31,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJ0ZXN0Q
     "phone" : 614675855,
     "password" : "azer"
 }
+
+###
+
+GET http://localhost:3001/api/admins/all

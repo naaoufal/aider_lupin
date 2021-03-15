@@ -13,22 +13,6 @@ async function all (req, res) {
     }
 }
 
-// add new admin in admin collection :
-async function add (req, res) {
-    const admin = new Admins({
-        fullname : req.body.fullname,
-        email : req.body.email,
-        phone : req.body.phone,
-        password : req.body.password
-    })
-    try {
-        const newAdmin = await admin.save()
-        res.json(newAdmin)
-    } catch (err) {
-        res.json({message : err.message})
-    }
-}
-
 // async function createOne (req, res) {
 //     const superAdmin = new Superadmins({
 //         fullname : req.body.fullname,
@@ -65,6 +49,5 @@ function login (req, res, next) {
 
 module.exports = {
     all,
-    login,
-    add
+    login
 }
