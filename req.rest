@@ -18,3 +18,16 @@ Content-Type: application/json
     "email" : "test@gmail.com",
     "password" : "azer"
 }
+
+###
+
+POST http://localhost:3001/api/admins/add
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJ0ZXN0QGdtYWlsLmNvbSIsImFkcGFzc3dvcmQiOiJhemVyIiwiaWF0IjoxNjE1ODMyNjQwfQ.nLvoaGsrEwSH0hd-rz204d2qU9k2ib1GqVAy6nXi3Xw
+
+{
+    "fullname" : "naoufal",
+    "email" : "test@gmail.com",
+    "phone" : 614675855,
+    "password" : "azer"
+}
