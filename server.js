@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // declare our endpoints here:
-
+app.use("/api/superadmins", require("./back_end/routes/superAdmins.js"))
 
 
 // start the server

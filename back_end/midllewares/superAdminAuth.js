@@ -1,6 +1,6 @@
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
-const Admins = require('../models/superAdmin')
+const Superadmins = require('../models/superAdmins')
 
 module.exports = function auth (req, res, next) {
     const autHeader = req.headers['authorization']
@@ -11,7 +11,7 @@ module.exports = function auth (req, res, next) {
     }
   
     const code = jwt.verify(token, process.env.ACCESS_TOKEN_SUPER)
-    const admin = Admins.findById(code.id)
+    const admin = Superadmins.findById(code.id)
 
     if(!admin){
         return res.sendStatus(404)
