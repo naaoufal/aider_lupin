@@ -1,6 +1,7 @@
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const Superadmins = require('../models/superAdmins')
+const Admins = require('../models/admins')
 
  
 async function all (req, res) {
@@ -12,19 +13,35 @@ async function all (req, res) {
     }
 }
 
-async function createOne (req, res) {
-    const superAdmin = new Superadmins({
+// add new admin in admin collection :
+async function add (req, res) {
+    const admin = new Admins({
         fullname : req.body.fullname,
         email : req.body.email,
+        phone : req.body.phone,
         password : req.body.password
     })
     try {
-        const newSuperAdmin = await superAdmin.save()
-        res.json(newSuperAdmin)
+        const newAdmin = await admin.save()
+        res.json(newAdmin)
     } catch (err) {
         res.json({message : err.message})
     }
 }
+
+// async function createOne (req, res) {
+//     const superAdmin = new Superadmins({
+//         fullname : req.body.fullname,
+//         email : req.body.email,
+//         password : req.body.password
+//     })
+//     try {
+//         const newSuperAdmin = await superAdmin.save()
+//         res.json(newSuperAdmin)
+//     } catch (err) {
+//         res.json({message : err.message})
+//     }
+// }
 
 function login (req, res, next) {
     const {email, password} = req.body
@@ -49,5 +66,5 @@ function login (req, res, next) {
 module.exports = {
     all,
     login,
-    createOne
+    add
 }
