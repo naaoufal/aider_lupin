@@ -1,7 +1,23 @@
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link, useHistory } from "react-router-dom"
 import NavBar from "./components/NavBar"
 
 function SuperAdminDashboard () {
+
+    let history = useHistory()
+    const [admins, setAdmins] = useState()
+    const token = localStorage.getItem('tokenaccess')
+
+    useEffect(() => {
+        if (token) {
+            function renderAdminData () {
+
+            }
+        } else {
+            history.push("/SuperAdminLogin")
+        }
+    }, [])
+
     return (
         <body className="home">
             <NavBar />
@@ -15,6 +31,12 @@ function SuperAdminDashboard () {
                 <header class="page-header">
                     <h1 class="page-title">Dashboard</h1>
                 </header>
+
+                <div className="jumbotron top-space">
+                    <h4>General Information :</h4>
+                    <p>Full name : </p>
+                    <p>Email : </p>
+                </div>
                 
                 <br /> <br />
                 <div className="row">

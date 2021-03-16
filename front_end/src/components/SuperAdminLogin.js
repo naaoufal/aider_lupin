@@ -35,10 +35,10 @@ function SuperAdminLogin () {
                 superAdmin.map(info => {
                     //console.log(info.email, info.password)
                     if(info.email == em && info.password == pass) {
-                        console.log("super admin found")
+                        //console.log("super admin found")
+                        history.push("/SuperDashboard")
                     } else {
                         console.log("Error")
-                        history.push("/SuperDashboard")
                     }
                 })
                 
