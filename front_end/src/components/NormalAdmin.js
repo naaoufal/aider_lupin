@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 
-function SuperAdminLogin () {
+
+function NormalAdmin () {
     return (
             <div className="container">
                 <ol class="breadcrumb">
                     <li><Link to="#">Home</Link></li>
-                    <li class="active">Super Admin access</li>
+                    <li class="active">Normal Admin access</li>
                     <div className="row">
                         <article class="col-xs-12 maincontent">
                             <header class="page-header">
@@ -14,7 +15,7 @@ function SuperAdminLogin () {
                             <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <h3 class="thin text-center">Super Admin Panel</h3>
+                                        <h3 class="thin text-center">Normal Admin Panel</h3>
                                         <hr />
                                         <form>
                                             <div class="top-margin">
@@ -46,4 +47,4 @@ function SuperAdminLogin () {
     )
 }
 
-export default SuperAdminLogin
+export default NormalAdmin

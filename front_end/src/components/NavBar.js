@@ -10,8 +10,7 @@ function NavBar () {
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
-                        <li class="active"><Link className="btn">Sign in</Link></li>
-                        <li class="active"><Link className="btn">Sign up</Link></li>
+                        <li class="active"><Link className="btn">Sign out</Link></li>
                     </ul>
                 </div>
             </div>
