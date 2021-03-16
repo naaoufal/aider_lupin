@@ -21,6 +21,10 @@ const adminSchema = new mongoose.Schema({
     is_reseted : {
         type : Boolean,
         required : true
+    },
+    stat : {
+        type : Boolean,
+        required : true
     }
 
 })

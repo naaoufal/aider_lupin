@@ -30,7 +30,8 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qY
     "email" : "mare32980@gmail.com",
     "phone" : 614675855,
     "password" : "azer",
-    "is_reseted" : false
+    "is_reseted" : false,
+    "stat" : false
 }
 
 ###

@@ -23,6 +23,28 @@ function SuperAdminDashboard () {
                             <div className="panel-body">
                                 <h3 class="thin">Administrator Table :</h3>
                                 <hr />
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>full name</td>
+                                            <td>Email</td>
+                                            <td>Phone</td>
+                                            <td>Password</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>123</td>
+                                            <td>123</td>
+                                            <td>123</td>
+                                            <td>123</td>
+                                            <td>123</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr />
+                                <button className="btn btn-primary">Add New</button>
                             </div>
                         </div>
                     </div>

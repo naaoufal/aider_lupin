@@ -27,7 +27,8 @@ async function add (req, res) {
         email : req.body.email,
         phone : req.body.phone,
         password : req.body.password,
-        is_reseted : req.body.is_reseted
+        is_reseted : req.body.is_reseted,
+        stat : req.body.stat
     })
     try {
         const newAdmin = await admin.save()
