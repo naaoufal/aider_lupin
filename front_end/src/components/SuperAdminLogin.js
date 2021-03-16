@@ -35,6 +35,7 @@ function SuperAdminLogin () {
                 superAdmin.map(info => {
                     //console.log(info.email, info.password)
                     if(info.email == em && info.password == pass) {
+                        localStorage.setItem('adminInfo', JSON.stringify(info))
                         //console.log("super admin found")
                         history.push("/SuperDashboard")
                     } else {

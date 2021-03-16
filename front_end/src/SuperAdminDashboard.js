@@ -7,12 +7,16 @@ function SuperAdminDashboard () {
     let history = useHistory()
     const [admins, setAdmins] = useState()
     const token = localStorage.getItem('tokenaccess')
+    const data = localStorage.getItem('adminInfo')
 
     useEffect(() => {
         if (token) {
             function renderAdminData () {
-
+                console.log(data)
             }
+
+            renderAdminData()
+
         } else {
             history.push("/SuperAdminLogin")
         }
@@ -34,8 +38,8 @@ function SuperAdminDashboard () {
 
                 <div className="jumbotron top-space">
                     <h4>General Information :</h4>
-                    <p>Full name : </p>
-                    <p>Email : </p>
+                    <p>Full name : {}</p>
+                    <p>Email : {}</p>
                 </div>
                 
                 <br /> <br />
