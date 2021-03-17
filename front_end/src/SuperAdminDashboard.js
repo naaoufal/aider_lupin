@@ -4,15 +4,28 @@ import NavBar from "./components/NavBar"
 
 function SuperAdminDashboard () {
 
-    let history = useHistory()
-    const [admins, setAdmins] = useState()
+    let history = useHistory([])
+    const [admin, setAdmins] = useState([])
     const token = localStorage.getItem('tokenaccess')
     const data = localStorage.getItem('adminInfo')
+    const dt = JSON.parse(data)
 
     useEffect(() => {
+
+        
+
         if (token) {
             function renderAdminData () {
-                console.log(data)
+                fetch("http://localhost:3001/api/admins/all", {
+                    headers : {
+                        'Authorization' : 'Bearer ' + token
+                    }
+                }).then(res => {
+                    return res.json()
+                }).then(data => {
+                    //console.log(data)
+                    setAdmins(data)
+                })
             }
 
             renderAdminData()
@@ -21,6 +34,8 @@ function SuperAdminDashboard () {
             history.push("/SuperAdminLogin")
         }
     }, [])
+
+    //console.log(admin)
 
     return (
         <body className="home">
@@ -38,13 +53,13 @@ function SuperAdminDashboard () {
 
                 <div className="jumbotron top-space">
                     <h4>General Information :</h4>
-                    <p>Full name : {}</p>
-                    <p>Email : {}</p>
+                    <p>Full name : {dt.fullname}</p>
+                    <p>Email : {dt.email}</p>
                 </div>
                 
                 <br /> <br />
                 <div className="row">
-                    <div className="col-md-6 text-center">
+                    <div className="col-md text-center">
                         <div className="panel panel-default">
                             <div className="panel-body">
                                 <h3 class="thin">Administrator Table :</h3>
@@ -57,16 +72,20 @@ function SuperAdminDashboard () {
                                             <td>Email</td>
                                             <td>Phone</td>
                                             <td>Password</td>
+                                            <td>Action</td>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {admin.map( (i) => (
                                         <tr>
-                                            <td>123</td>
-                                            <td>123</td>
-                                            <td>123</td>
-                                            <td>123</td>
-                                            <td>123</td>
+                                            <td>{i._id}</td>
+                                            <td>{i.fullname}</td>
+                                            <td>{i.email}</td>
+                                            <td>{i.phone}</td>
+                                            <td>{i.password}</td>
+                                            <td><button className="btn btn-warning">Desable</button> <button className="btn btn-info">Delete</button></td>
                                         </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                                 <hr />

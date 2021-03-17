@@ -26,7 +26,7 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qYW1pbkBnbWFpbC5jb20iLCJhZHBhc3N3b3JkIjoiYXplciIsImlhdCI6MTYxNTg0ODg0OH0.ARuPIMs05CBOGgtJBcgzIYlf0T7Zce_v49hWKgnUpe4
 
 {
-    "fullname" : "hamza",
+    "fullname" : "naoufal",
     "email" : "mare32980@gmail.com",
     "phone" : 614675855,
     "password" : "azer",
@@ -37,3 +37,4 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qY
 ###
 
 GET http://localhost:3001/api/admins/all
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qYW1pbkBnbWFpbC5jb20iLCJhZHBhc3N3b3JkIjoiYXplciIsImlhdCI6MTYxNTg0ODg0OH0.ARuPIMs05CBOGgtJBcgzIYlf0T7Zce_v49hWKgnUpe4
