@@ -10,22 +10,23 @@ function SuperAdminDashboard () {
     const data = localStorage.getItem('adminInfo')
     const dt = JSON.parse(data)
 
+    function renderAdminData () {
+        fetch("http://localhost:3001/api/admins/all", {
+            headers : {
+                'Authorization' : 'Bearer ' + token
+            }
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            //console.log(data)
+            setAdmins(data)
+        })
+    }
+
     useEffect(() => {
 
         if (token) {
-            function renderAdminData () {
-                fetch("http://localhost:3001/api/admins/all", {
-                    headers : {
-                        'Authorization' : 'Bearer ' + token
-                    }
-                }).then(res => {
-                    return res.json()
-                }).then(data => {
-                    //console.log(data)
-                    setAdmins(data)
-                })
-            }
-
+            
             renderAdminData()
 
         } else {
@@ -57,7 +58,14 @@ function SuperAdminDashboard () {
         }).then(res => {
             return res.json()
         }).then(data => {
-            console.log(data)
+            //console.log(data.message)
+            if(data.message == "Email send to participant"){
+                alert("Admin Added Successfully")
+                window.location.reload()
+            } else {
+                alert("Error")
+                window.location.reload()
+            }
         })
     }
 
