@@ -54,7 +54,14 @@ async function add (req, res) {
     }
 }
 
+async function deleteAdmin (req, res) {
+    Admins.findByIdAndDelete(req.params.id).then( () => {
+        res.json()
+    })
+}
+
 module.exports = {
     all,
-    add
+    add,
+    deleteAdmin
 }

@@ -9,5 +9,7 @@ router.post("/add", access, adminCon.add)
 
 router.get("/all", access, adminCon.all)
 
+router.delete("/delete/:id", access, adminCon.deleteAdmin)
+
 
 module.exports = router
