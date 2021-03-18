@@ -12,8 +12,6 @@ function SuperAdminDashboard () {
 
     useEffect(() => {
 
-        
-
         if (token) {
             function renderAdminData () {
                 fetch("http://localhost:3001/api/admins/all", {
@@ -35,7 +33,15 @@ function SuperAdminDashboard () {
         }
     }, [])
 
-    //console.log(admin)
+    // add new admin:
+    function addNewAdmin () {
+        console.log("working")
+    }
+
+    // delete an admin:
+    function deleteAdmin (id) {
+        console.log(id)
+    }
 
     return (
         <body className="home">
@@ -83,13 +89,44 @@ function SuperAdminDashboard () {
                                             <td>{i.email}</td>
                                             <td>{i.phone}</td>
                                             <td>{i.password}</td>
-                                            <td><button className="btn btn-warning">Desable</button> <button className="btn btn-info">Delete</button></td>
+                                            <td><button className="btn btn-warning">Desable</button> <button onClick={() => deleteAdmin(i._id)} className="btn btn-info">Delete</button></td>
                                         </tr>
                                         ))}
                                     </tbody>
                                 </table>
                                 <hr />
-                                <button className="btn btn-primary">Add New</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Launch demo modal
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New Administrator</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div className="form-group">
+                                            <input type="text" placeholder="Enter admin full name" className="form-control" id="full" required/>
+                                        </div>
+                                        <div className="form-group">
+                                            <input type="email" placeholder="Enter admin email" className="form-control" id="email" required />
+                                        </div>
+                                        <div className="form-group">
+                                            <input type="text" placeholder="Enter admin phone" className="form-control" id="email" required />
+                                        </div>
+                                        <div className="form-group">
+                                            <input type="password" placeholder="Enter admin password" className="form-control" id="password" required />
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" onClick={addNewAdmin} class="btn btn-primary">Add</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
