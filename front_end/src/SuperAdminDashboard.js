@@ -35,7 +35,30 @@ function SuperAdminDashboard () {
 
     // add new admin:
     function addNewAdmin () {
-        console.log("working")
+        const name = document.querySelector('#full').value
+        const em = document.querySelector('#email').value
+        const ph = document.querySelector('#phone').value
+        const ps = document.querySelector('#password').value
+        //console.log(name, em, ph, ps)
+        fetch("http://localhost:3001/api/admins/add", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer ' + token
+            },
+            body : JSON.stringify({
+                fullname : name,
+                email : em,
+                phone : ph,
+                password : ps,
+                is_reseted : false,
+                stat : false
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            console.log(data)
+        })
     }
 
     // delete an admin:
@@ -96,7 +119,7 @@ function SuperAdminDashboard () {
                                 </table>
                                 <hr />
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Launch demo modal
+                                Add New Administrator
                                 </button>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -114,7 +137,7 @@ function SuperAdminDashboard () {
                                             <input type="email" placeholder="Enter admin email" className="form-control" id="email" required />
                                         </div>
                                         <div className="form-group">
-                                            <input type="text" placeholder="Enter admin phone" className="form-control" id="email" required />
+                                            <input type="text" placeholder="Enter admin phone" className="form-control" id="phone" required />
                                         </div>
                                         <div className="form-group">
                                             <input type="password" placeholder="Enter admin password" className="form-control" id="password" required />
