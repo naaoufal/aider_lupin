@@ -37,6 +37,9 @@ function NormalAdmin () {
                     if(i.email == em && i.password == pass){
                         localStorage.setItem('admin', JSON.stringify(i))
                         //console.log(i)
+                        history.push("/AdminDashboard")
+                    } else {
+                        history.push("/NormalAdmin")
                     }
                 })
             })
