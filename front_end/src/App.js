@@ -4,6 +4,7 @@ import SuperAdminLogin from './components/SuperAdminLogin'
 import NavBar from './components/NavBar'
 import NormalAdmin from './components/NormalAdmin';
 import SuperAdminDashboard from './SuperAdminDashboard';
+import AdminDashboard from './components/AdminDashboard'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/SuperAdminLogin" exact component={SuperAdminLogin} />
           <Route path="/NormalAdmin" exact component={NormalAdmin} />
           <Route path="/SuperDashboard" exact component={SuperAdminDashboard} />
+          <Route path="/AdminDashboard" exact component={AdminDashboard} />
         </Switch>
       </div>
     </Router>

@@ -22,6 +22,18 @@ function NormalAdmin () {
             })
         }).then(res => {
             return res.json()
+        }).then(data => {
+            console.log(data.accessToken)
+            localStorage.setItem('adminToken', data.accessToken)
+            fetch("http://localhost:3001/api/admins/all", {
+                headers : {
+                    'Authorization' : 'Bearer ' + data.accessToken
+                }
+            }).then(res => {
+                return res.json()
+            }).then(admin => {
+                console.log(admin)
+            })
         })
     }
 
@@ -40,7 +52,7 @@ function NormalAdmin () {
                                     <div class="panel-body">
                                         <h3 class="thin text-center">Normal Admin Panel</h3>
                                         <hr />
-                                        <form>
+                                        <div>
                                             <div class="top-margin">
                                                 <label>Email <span class="text-danger">*</span></label>
                                                 <input onChange={event => setEmail(event.target.value)} type="text" class="form-control" required />
@@ -59,7 +71,7 @@ function NormalAdmin () {
                                                     <button onClick={cliLog} class="btn btn-action" type="submit">Sign in</button>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

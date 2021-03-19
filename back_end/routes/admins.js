@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const access = require('../midllewares/superAdminAuth')
+const adminAccess = require('../midllewares/adminauth')
 
 // declare our routes
 const adminCon = require("../controllers/admins")
@@ -8,6 +9,8 @@ const adminCon = require("../controllers/admins")
 router.post("/add", access, adminCon.add)
 
 router.get("/all", access, adminCon.all)
+
+router.get("/all", adminCon.all)
 
 router.patch("/edit/:id", access, adminCon.edit)
 
