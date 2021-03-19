@@ -11,7 +11,18 @@ function NormalAdmin () {
     const [pass, setPass] = useState()
 
     function cliLog () {
-        
+        fetch("http://localhost:3001/api/admins/authAdmin", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                email : em,
+                password : pass
+            })
+        }).then(res => {
+            return res.json()
+        })
     }
 
     return (
