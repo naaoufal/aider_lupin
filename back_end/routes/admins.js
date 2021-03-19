@@ -9,6 +9,8 @@ router.post("/add", access, adminCon.add)
 
 router.get("/all", access, adminCon.all)
 
+router.patch("/edit/:id", access, adminCon.edit)
+
 router.delete("/delete/:id", access, adminCon.deleteAdmin)
 
 

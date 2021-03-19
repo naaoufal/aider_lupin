@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar"
 
 function SuperAdminDashboard () {
 
+    const [stat , setStatus] = useState()
     let history = useHistory([])
     const [admin, setAdmins] = useState([])
     const token = localStorage.getItem('tokenaccess')
@@ -69,9 +70,48 @@ function SuperAdminDashboard () {
         })
     }
 
+    // patch on stat of admin only !!! :
+    function editStat (id) {
+        fetch(`http://localhost:3001/api/admins/edit/${id}`, {
+            method : 'PATCH',
+            headers : {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer ' + token
+            },
+            body : JSON.stringify({
+                stat : false
+            })
+        }).then(res => {
+            window.location.reload()
+        })
+    }
+
+    // enable admin account:
+    function enableAd (id) {
+        fetch(`http://localhost:3001/api/admins/edit/${id}`, {
+            method : 'PATCH',
+            headers : {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer ' + token
+            },
+            body : JSON.stringify({
+                stat : true
+            })
+        }).then(res => {
+            window.location.reload()
+        })
+    }
+
     // delete an admin:
     function deleteAdmin (id) {
-        console.log(id)
+        fetch(`http://localhost:3001/api/admins/delete/${id}`, {
+            method : 'DELETE',
+            headers : {
+                'Authorization' : 'Bearer ' + token
+            }
+        }).then(res => {
+            window.location.reload()
+        })
     }
 
     return (
@@ -109,6 +149,8 @@ function SuperAdminDashboard () {
                                             <td>Email</td>
                                             <td>Phone</td>
                                             <td>Password</td>
+                                            <td>Is_Reseted</td>
+                                            <td>Status</td>
                                             <td>Action</td>
                                         </tr>
                                     </thead>
@@ -120,7 +162,15 @@ function SuperAdminDashboard () {
                                             <td>{i.email}</td>
                                             <td>{i.phone}</td>
                                             <td>{i.password}</td>
-                                            <td><button className="btn btn-warning">Desable</button> <button onClick={() => deleteAdmin(i._id)} className="btn btn-info">Delete</button></td>
+                                            <td>{JSON.stringify(i.is_reseted)}</td>
+                                            <td>{JSON.stringify(i.stat)}</td>
+                                            <td> { i.stat ?
+                                                <button onClick={() => editStat(i._id)} className="btn btn-warning">Desable</button>
+                                                :
+                                                <button onClick={() => enableAd(i._id)} className="btn btn-warning">Enable</button> 
+                                                }
+                                                 <button onClick={() => deleteAdmin(i._id)} className="btn btn-info">Delete</button>
+                                            </td>
                                         </tr>
                                         ))}
                                     </tbody>

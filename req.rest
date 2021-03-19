@@ -38,3 +38,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qY
 
 GET http://localhost:3001/api/admins/all
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qYW1pbkBnbWFpbC5jb20iLCJhZHBhc3N3b3JkIjoiYXplciIsImlhdCI6MTYxNTg0ODg0OH0.ARuPIMs05CBOGgtJBcgzIYlf0T7Zce_v49hWKgnUpe4
+
+###
+
+DELETE http://localhost:3001/api/admins/delete/605360841aec771064e4fbab

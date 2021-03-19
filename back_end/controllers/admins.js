@@ -46,12 +46,29 @@ async function add (req, res) {
             if(err){
                 res.json({message : err.message})
             } else {
-                res.json({message : "Email send to participant"})
+                res.json({message : "Email send to admin"})
             }
         })
     } catch (err) {
         res.json({message : err.message})
     }
+}
+
+async function edit (req, res) {
+    if(!req.body){
+        return res.send({message : "they is not data !!!"})
+    }
+    const id = req.params.id
+    Admins.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(data => {
+        //console.log(data.email)
+        if (!data) {
+            res.send({
+              message: `they is no admin !`
+            });
+          } else {
+            res.send({ message: "admin is updated successfully." })            
+          }
+    })
 }
 
 async function deleteAdmin (req, res) {
@@ -63,5 +80,6 @@ async function deleteAdmin (req, res) {
 module.exports = {
     all,
     add,
+    edit,
     deleteAdmin
 }
