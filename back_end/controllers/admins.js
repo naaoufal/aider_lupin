@@ -21,6 +21,21 @@ async function all (req, res) {
     }
 }
 
+async function getAdminById (req, res, next) {
+    let admin
+    try {
+        admin = await Admins.findById(req.params.id);
+        res.json(admin)
+
+        const query = {is_reseted : true}
+
+    } catch (error) {
+        return res.json({message : error.message})
+    }
+    res.admin = admin
+    next()
+}
+
 async function add (req, res) {
     const admin = new Admins({
         fullname : req.body.fullname,
@@ -81,5 +96,6 @@ module.exports = {
     all,
     add,
     edit,
-    deleteAdmin
+    deleteAdmin,
+    getAdminById
 }

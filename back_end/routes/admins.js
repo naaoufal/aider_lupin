@@ -13,5 +13,7 @@ router.patch("/edit/:id", access, adminCon.edit)
 
 router.delete("/delete/:id", access, adminCon.deleteAdmin)
 
+router.get("/oneAdmin/:id", adminCon.getAdminById)
+
 
 module.exports = router
