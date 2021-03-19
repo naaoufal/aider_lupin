@@ -25,14 +25,20 @@ function NormalAdmin () {
         }).then(data => {
             console.log(data.accessToken)
             localStorage.setItem('adminToken', data.accessToken)
-            fetch("http://localhost:3001/api/admins/all", {
+            fetch("http://localhost:3001/api/admins/allAdmins", {
                 headers : {
                     'Authorization' : 'Bearer ' + data.accessToken
                 }
             }).then(res => {
                 return res.json()
             }).then(admin => {
-                console.log(admin)
+                //console.log(admin)
+                admin.map(i => {
+                    if(i.email == em && i.password == pass){
+                        localStorage.setItem('admin', JSON.stringify(i))
+                        //console.log(i)
+                    }
+                })
             })
         })
     }

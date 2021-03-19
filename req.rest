@@ -45,7 +45,7 @@ DELETE http://localhost:3001/api/admins/delete/605360841aec771064e4fbab
 
 ###
 
-GET http://localhost:3001/api/admins/oneAdmin/6051179c422fce237c792597
+GET http://localhost:3001/api/admins/allAdmins
 
 ###
 

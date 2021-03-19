@@ -21,6 +21,16 @@ async function all (req, res) {
     }
 }
 
+// public function:
+async function allAdmins (req, res) {
+    try {
+        const admins = await Admins.find()
+        res.json(admins)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
 async function getAdminById (req, res, next) {
     let admin
     try {
@@ -118,5 +128,6 @@ module.exports = {
     edit,
     deleteAdmin,
     getAdminById,
-    loginAdmin
+    loginAdmin,
+    allAdmins
 }

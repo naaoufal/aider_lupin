@@ -6,11 +6,13 @@ const adminAccess = require('../midllewares/adminauth')
 // declare our routes
 const adminCon = require("../controllers/admins")
 
+
+
 router.post("/add", access, adminCon.add)
 
 router.get("/all", access, adminCon.all)
 
-router.get("/all", adminCon.all)
+router.get("/allAdmins", adminCon.allAdmins)
 
 router.patch("/edit/:id", access, adminCon.edit)
 
