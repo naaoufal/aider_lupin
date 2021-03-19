@@ -1,7 +1,19 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 
 
 function NormalAdmin () {
+
+    let history = useHistory()
+
+    const [em, setEmail] = useState()
+    const [pass, setPass] = useState()
+
+    function cliLog () {
+        
+    }
+
     return (
             <div className="container">
                 <ol class="breadcrumb">
@@ -20,11 +32,11 @@ function NormalAdmin () {
                                         <form>
                                             <div class="top-margin">
                                                 <label>Email <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" required />
+                                                <input onChange={event => setEmail(event.target.value)} type="text" class="form-control" required />
                                             </div>
                                             <div class="top-margin">
                                                 <label>Password <span class="text-danger">*</span></label>
-                                                <input type="password" class="form-control" required />
+                                                <input onChange={event => setPass(event.target.value)} type="password" class="form-control" required />
                                             </div>
 
                                             <hr/>
@@ -33,7 +45,7 @@ function NormalAdmin () {
                                                 <div class="col-lg-8">
                                                 </div>
                                                 <div class="col-lg-4 text-right">
-                                                    <button class="btn btn-action" type="submit">Sign in</button>
+                                                    <button onClick={cliLog} class="btn btn-action" type="submit">Sign in</button>
                                                 </div>
                                             </div>
                                         </form>
