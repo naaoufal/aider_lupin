@@ -15,5 +15,7 @@ router.delete("/delete/:id", access, adminCon.deleteAdmin)
 
 router.get("/oneAdmin/:id", adminCon.getAdminById)
 
+router.post("/authAdmin", adminCon.loginAdmin)
+
 
 module.exports = router

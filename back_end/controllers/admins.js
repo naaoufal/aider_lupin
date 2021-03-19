@@ -92,10 +92,31 @@ async function deleteAdmin (req, res) {
     })
 }
 
+function loginAdmin (req, res, next) {
+    const {email, password} = req.body
+    Admins.findOne({
+        email : email,
+        password : password
+    }).then(admin => {
+        if(!admin){
+            res.json({message : "You re Not Allowed"})
+        } else {
+            const email = req.body.email
+            const password = req.body.password
+            const ad = {adname : email, adpassword : password}
+            const accessToken = jwt.sign(ad, process.env.ACCESS_TOKEN_NORMAL)
+            res.json({accessToken : accessToken})
+            res.ad = ad
+            next()
+        }
+    })
+}
+
 module.exports = {
     all,
     add,
     edit,
     deleteAdmin,
-    getAdminById
+    getAdminById,
+    loginAdmin
 }
