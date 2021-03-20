@@ -211,10 +211,18 @@ function SuperAdminDashboard () {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 text-center">
+                    <div className="col-md text-center">
                         <div className="panel panel-default">
                             <div className="panel-body">
                                 <h3 class="thin">Sellers Table :</h3>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md text-center">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                                <h3 class="thin">Products Type Table :</h3>
                                 <hr />
                             </div>
                         </div>
