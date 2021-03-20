@@ -23,26 +23,29 @@ function NormalAdmin () {
         }).then(res => {
             return res.json()
         }).then(data => {
-            console.log(data.accessToken)
-            localStorage.setItem('adminToken', data.accessToken)
-            fetch("http://localhost:3001/api/admins/allAdmins", {
-                headers : {
-                    'Authorization' : 'Bearer ' + data.accessToken
-                }
-            }).then(res => {
-                return res.json()
-            }).then(admin => {
-                //console.log(admin)
-                admin.map(i => {
-                    if(i.email == em && i.password == pass){
-                        localStorage.setItem('admin', JSON.stringify(i))
-                        //console.log(i)
-                        history.push("/AdminDashboard")
-                    } else {
-                        history.push("/NormalAdmin")
+            //console.log(data.accessToken)
+            if(data.accessToken){
+                localStorage.setItem('adminToken', data.accessToken)
+                fetch("http://localhost:3001/api/admins/allAdmins", {
+                    headers : {
+                        'Authorization' : 'Bearer ' + data.accessToken
                     }
+                }).then(res => {
+                    return res.json()
+                }).then(admin => {
+                    //console.log(admin)
+                    admin.map(i => {
+                        if(i.email == em && i.password == pass){
+                            localStorage.setItem('admin', JSON.stringify(i))
+                            //console.log(i)
+                            history.push("/AdminDashboard")
+                        }
+                    })
                 })
-            })
+            } else {
+                alert("Error")
+                window.location.reload()
+            }
         })
     }
 

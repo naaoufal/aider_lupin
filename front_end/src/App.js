@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import SuperAdminLogin from './components/SuperAdminLogin'
 import NavBar from './components/NavBar'
 import NormalAdmin from './components/NormalAdmin';
-import SuperAdminDashboard from './SuperAdminDashboard';
+import SuperAdminDashboard from './components/SuperAdminDashboard';
 import AdminDashboard from './components/AdminDashboard'
 
 function App() {
