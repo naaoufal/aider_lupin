@@ -22,7 +22,25 @@ async function createOne (req, res) {
     }
 }
 
+async function edit (req, res) {
+    if(!req.body){
+        return res.send({message : "they is not data !!!"})
+    }
+    const id = req.params.id
+    Type.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(data => {
+        //console.log(data.email)
+        if (!data) {
+            res.send({
+              message: `they is no type !`
+            });
+          } else {
+            res.send({ message: "productType is updated successfully." })            
+          }
+    })
+}
+
 module.exports = {
     all,
-    createOne
+    createOne,
+    edit
 }

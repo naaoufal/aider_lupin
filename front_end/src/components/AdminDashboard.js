@@ -13,6 +13,12 @@ function AdminDashboard () {
 
     //console.log(token)
 
+    // clear localStorage : 
+    function clearSess () {
+        localStorage.clear()
+        history.push("/NormalAdmin")
+    }
+
     useEffect(() => {
         if(token){
 
@@ -23,7 +29,19 @@ function AdminDashboard () {
 
     return (
         <body className="home">
-            <NavBar />
+            <div class="navbar navbar-inverse navbar-fixed-top headroom" >
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        <Link className="navbar-brand">LOGO</Link>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="active"><Link onClick={clearSess} className="btn">Sign out</Link></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <header id="head" className="secondary"></header>
             <div className="container">
                 <ol className="breadcrumb">

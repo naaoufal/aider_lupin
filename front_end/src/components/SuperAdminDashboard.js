@@ -126,6 +126,11 @@ function SuperAdminDashboard () {
         })
     }
 
+    // edit product type:
+    function editType (id) {
+        console.log(id)
+    }
+
     // enable admin account:
     function enableAd (id) {
         fetch(`http://localhost:3001/api/admins/edit/${id}`, {
@@ -277,7 +282,7 @@ function SuperAdminDashboard () {
                                             <tr>
                                                 <td>{i._id}</td>
                                                 <td>{i.name}</td>
-                                                <td><button className="btn btn-info">Delete</button></td>
+                                                <td><button type="button" data-toggle="modal" data-target="#exampleEdit" onClick={() => editType(i._id)} className="btn btn-info">Edit</button> <button className="btn btn-warning">Delete</button></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -285,6 +290,7 @@ function SuperAdminDashboard () {
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example1">
                                 Add New Type
                                 </button>
+                                {/* modal to add new type */}
                                 <div class="modal fade" id="example1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -301,6 +307,27 @@ function SuperAdminDashboard () {
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" onClick={addNewType} class="btn btn-primary">Add</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* modal to edit a type */}
+                                <div class="modal fade" id="exampleEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Type</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter Type Name" className="form-control" id="name" required/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" onClick={editType} class="btn btn-primary">Add</button>
                                         </div>
                                         </div>
                                     </div>

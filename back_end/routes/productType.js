@@ -8,6 +8,8 @@ const typeCon = require("../controllers/productType")
 
 router.get("/all", access, typeCon.all)
 
+router.patch("/edit/:id", access, typeCon.edit)
+
 router.post("/add", access, typeCon.createOne)
 
 
