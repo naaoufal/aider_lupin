@@ -7,6 +7,7 @@ function SuperAdminDashboard () {
     const [stat , setStatus] = useState()
     let history = useHistory([])
     const [admin, setAdmins] = useState([])
+    const [productType, setType] = useState([])
     const token = localStorage.getItem('tokenaccess')
     const data = localStorage.getItem('adminInfo')
     const dt = JSON.parse(data)
@@ -24,11 +25,24 @@ function SuperAdminDashboard () {
         })
     }
 
+    function renderTypeData () {
+        fetch("http://localhost:3001/api/productsType/all", {
+            headers : {
+                'Authorization' : 'Bearer ' + token
+            }
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            setType(data)
+        })
+    }
+
     useEffect(() => {
 
         if (token) {
             
             renderAdminData()
+            renderTypeData()
 
         } else {
             history.push("/SuperAdminLogin")
@@ -59,9 +73,35 @@ function SuperAdminDashboard () {
         }).then(res => {
             return res.json()
         }).then(data => {
-            //console.log(data.message)
-            if(data.message == "Email send to participant"){
+            console.log(data.message)
+            if(data.message == "Email send to admin"){
                 alert("Admin Added Successfully")
+                window.location.reload()
+            } else {
+                alert("Error")
+                window.location.reload()
+            }
+        })
+    }
+
+    function addNewType () {
+        const nm = document.querySelector('#name').value
+
+        fetch("http://localhost:3001/api/productsType/add", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer ' + token
+            },
+            body : JSON.stringify({
+                name : nm
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            //console.log(data)
+            if(data){
+                alert("Type Added Successfully")
                 window.location.reload()
             } else {
                 alert("Error")
@@ -151,7 +191,7 @@ function SuperAdminDashboard () {
                                             <td>Password</td>
                                             <td>Is_Reseted</td>
                                             <td>Status</td>
-                                            <td>Action</td>
+                                            <td>Actions</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -180,33 +220,33 @@ function SuperAdminDashboard () {
                                 Add New Administrator
                                 </button>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add New Administrator</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div className="form-group">
-                                            <input type="text" placeholder="Enter admin full name" className="form-control" id="full" required/>
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Administrator</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
                                         </div>
-                                        <div className="form-group">
-                                            <input type="email" placeholder="Enter admin email" className="form-control" id="email" required />
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter admin full name" className="form-control" id="full" required/>
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="email" placeholder="Enter admin email" className="form-control" id="email" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter admin phone" className="form-control" id="phone" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="password" placeholder="Enter admin password" className="form-control" id="password" required />
+                                            </div>
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" placeholder="Enter admin phone" className="form-control" id="phone" required />
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" onClick={addNewAdmin} class="btn btn-primary">Add</button>
                                         </div>
-                                        <div className="form-group">
-                                            <input type="password" placeholder="Enter admin password" className="form-control" id="password" required />
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" onClick={addNewAdmin} class="btn btn-primary">Add</button>
-                                    </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -224,6 +264,47 @@ function SuperAdminDashboard () {
                             <div className="panel-body">
                                 <h3 class="thin">Products Type Table :</h3>
                                 <hr />
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Name</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {productType.map((i) => (
+                                            <tr>
+                                                <td>{i._id}</td>
+                                                <td>{i.name}</td>
+                                                <td><button className="btn btn-info">Delete</button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#example1">
+                                Add New Type
+                                </button>
+                                <div class="modal fade" id="example1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Type</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter Type Name" className="form-control" id="name" required/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" onClick={addNewType} class="btn btn-primary">Add</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -56,3 +56,6 @@ Content-Type: application/json
     "email" : "naoufelbenmensour@gmail.com",
     "password" : "azer"
 }
+
+###
+GET http://localhost:3001/api/productsType/all

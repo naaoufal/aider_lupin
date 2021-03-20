@@ -48,6 +48,8 @@ function AdminDashboard () {
                             <div className="panel-body">
                                 <h3 className="thin">Buyers Tables :</h3>
                                 <hr />
+                                <table></table>
+                                <hr />
                             </div>
                         </div>
                     </div>
