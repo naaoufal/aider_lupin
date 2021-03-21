@@ -6,7 +6,7 @@ const access = require('../midllewares/superAdminAuth')
 const typeCon = require("../controllers/productType")
 
 
-router.get("/all", access, typeCon.all)
+router.get("/all", typeCon.all)
 
 router.patch("/edit/:id", access, typeCon.edit)
 
