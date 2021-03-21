@@ -128,7 +128,22 @@ function SuperAdminDashboard () {
 
     // edit product type:
     function editType (id) {
-        console.log(id)
+        const nm = document.querySelector('#nameType').value
+        console.log(nm, id)
+        // fetch(`http://localhost:3001/api/productsType/edit/${id}`, {
+        //     method : 'PATCH',
+        //     headers : {
+        //         'Content-Type' : 'application/json',
+        //         'Authorization' : 'Bearer ' + token
+        //     },
+        //     body : JSON.stringify({
+        //         name : nm
+        //     })
+        // }).then(res => {
+        //     return res.json()
+        // }).then(data => {
+        //     console.log(data)
+        // })
     }
 
     // enable admin account:
@@ -316,18 +331,18 @@ function SuperAdminDashboard () {
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Add New Type</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Type</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             <div className="form-group">
-                                                <input type="text" placeholder="Enter Type Name" className="form-control" id="name" required/>
+                                                <input type="text" placeholder="Enter Type Name" className="form-control" id="nameType" required/>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" onClick={editType} class="btn btn-primary">Add</button>
+                                            <button type="button" onClick={editType} class="btn btn-primary">Edit</button>
                                         </div>
                                         </div>
                                     </div>

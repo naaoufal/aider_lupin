@@ -11,8 +11,6 @@ function AdminDashboard () {
     const data = localStorage.getItem('admin')
     const dt = JSON.parse(data)
 
-    //console.log(token)
-
     // clear localStorage : 
     function clearSess () {
         localStorage.clear()
