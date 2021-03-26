@@ -70,10 +70,10 @@ POST http://localhost:3001/api/users/add
 Content-Type: application/json
 
 {
-    "fullname" : "naoufel benmensour",
-    "email" : "naoufelbenmensour@gmail.com",
+    "fullname" : "test test",
+    "email" : "test@gmail.com",
     "phone" : 614675855,
-    "roleUser" : "seller",
+    "roleUser" : "buyer",
     "is_reseted" : false,
     "password" : "azer"
 }
