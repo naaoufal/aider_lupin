@@ -59,3 +59,21 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/api/productsType/all
+
+###
+
+GET http://localhost:3001/api/users/all
+
+###
+
+POST http://localhost:3001/api/users/add
+Content-Type: application/json
+
+{
+    "fullname" : "naoufel benmensour",
+    "email" : "naoufelbenmensour@gmail.com",
+    "phone" : 614675855,
+    "roleUser" : "seller",
+    "is_reseted" : false,
+    "password" : "azer"
+}

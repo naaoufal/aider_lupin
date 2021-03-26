@@ -14,14 +14,14 @@ function AdminDashboard () {
     // clear localStorage : 
     function clearSess () {
         localStorage.clear()
-        history.push("/NormalAdmin")
+        history.push("/AdminLogin")
     }
 
     useEffect(() => {
         if(token){
 
         } else {
-            history.push("/NormalAdmin")
+            history.push("/AdminLogin")
         }
     })
 

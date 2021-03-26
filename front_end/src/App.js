@@ -13,9 +13,10 @@ function App() {
         <Route path="/" exact component={NavBar} />
         <Switch>
           <Route path="/SuperAdminLogin" exact component={SuperAdminLogin} />
-          <Route path="/NormalAdmin" exact component={NormalAdmin} />
+          <Route path="/AdminLogin" exact component={NormalAdmin} />
           <Route path="/SuperDashboard" exact component={SuperAdminDashboard} />
           <Route path="/AdminDashboard" exact component={AdminDashboard} />
+          <Route path="/" />
         </Switch>
       </div>
     </Router>
