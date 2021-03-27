@@ -5,6 +5,7 @@ import NavBar from "./NavBar"
 function SuperAdminDashboard () {
 
     const [stat , setStatus] = useState()
+    const [sellers, setSellers] = useState([])
     let history = useHistory([])
     const [admin, setAdmins] = useState([])
     const [productType, setType] = useState([])
@@ -41,6 +42,13 @@ function SuperAdminDashboard () {
 
         if (token) {
             
+            // render sellers data:
+            fetch("http://localhost:3001/api/users/allSellers").then(res => {
+                return res.json()
+            }).then(data => {
+                setSellers(data)
+            })
+
             renderAdminData()
             renderTypeData()
 
@@ -276,6 +284,34 @@ function SuperAdminDashboard () {
                             <div className="panel-body">
                                 <h3 class="thin">Sellers Table :</h3>
                                 <hr />
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Fullname</td>
+                                            <td>Email</td>
+                                            <td>Phone</td>
+                                            <td>Password</td>
+                                            <td>Is_Reseted</td>
+                                            <td>Role</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {sellers.map( (i) => (
+                                            <tr>
+                                                <td>{i._id}</td>
+                                                <td>{i.fullname}</td>
+                                                <td>{i.email}</td>
+                                                <td>{i.phone}</td>
+                                                <td>{i.password}</td>
+                                                <td>{JSON.stringify(i.is_reseted)}</td>
+                                                <td>{i.role}</td>
+                                                <td><button className="btn btn-warning">Delete</button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

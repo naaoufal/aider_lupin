@@ -5,7 +5,9 @@ const router = express.Router()
 const userCon = require("../controllers/Users")
 
 
-router.get("/all", userCon.allUsers)
+router.get("/allBuyers", userCon.allBuyers)
+
+router.get("/allSellers", userCon.allSellers)
 
 router.post("/add", userCon.add)
 

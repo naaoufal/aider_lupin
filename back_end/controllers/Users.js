@@ -2,9 +2,22 @@ require('dotenv').config()
 const Users = require('../models/users')
 
 
-async function allUsers (req, res) {
+async function allBuyers (req, res) {
     try {
-        const users = await Users.find()
+        const users = await Users.find({
+            role : "buyer"
+        })
+        res.json(users)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
+async function allSellers (req, res) {
+    try {
+        const users = await Users.find({
+            role : "seller"
+        })
         res.json(users)
     } catch (error) {
         res.json({message : error.message})
@@ -52,7 +65,8 @@ async function deleteUser (req, res) {
 }
 
 module.exports = {
-    allUsers,
+    allBuyers,
+    allSellers,
     edit,
     add,
     deleteUser

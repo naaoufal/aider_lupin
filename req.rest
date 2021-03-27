@@ -62,7 +62,11 @@ GET http://localhost:3001/api/productsType/all
 
 ###
 
-GET http://localhost:3001/api/users/all
+GET http://localhost:3001/api/users/allBuyers
+
+###
+
+GET http://localhost:3001/api/users/allSellers
 
 ###
 

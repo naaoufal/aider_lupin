@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useHistory } from "react-router"
 import { Link } from "react-router-dom"
 import NavBar from "./NavBar"
@@ -10,6 +10,7 @@ function AdminDashboard () {
     const token = localStorage.getItem('adminToken')
     const data = localStorage.getItem('admin')
     const dt = JSON.parse(data)
+    const [buyers, setBuyers] = useState([])
 
     // clear localStorage : 
     function clearSess () {
@@ -19,7 +20,12 @@ function AdminDashboard () {
 
     useEffect(() => {
         if(token){
-
+            fetch("http://localhost:3001/api/users/allBuyers").then(res => {
+                return res.json()
+            }).then(data => {
+                //console.log(data)
+                setBuyers(data)
+            })
         } else {
             history.push("/AdminLogin")
         }
@@ -64,7 +70,34 @@ function AdminDashboard () {
                             <div className="panel-body">
                                 <h3 className="thin">Buyers Tables :</h3>
                                 <hr />
-                                <table></table>
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Fullname</td>
+                                            <td>Email</td>
+                                            <td>Phone</td>
+                                            <td>Password</td>
+                                            <td>Is_Reseted</td>
+                                            <td>Role</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {buyers.map( (i) => (
+                                            <tr>
+                                                <td>{i._id}</td>
+                                                <td>{i.fullname}</td>
+                                                <td>{i.email}</td>
+                                                <td>{i.phone}</td>
+                                                <td>{i.password}</td>
+                                                <td>{JSON.stringify(i.is_reseted)}</td>
+                                                <td>{i.role}</td>
+                                                <td><button className="btn btn-warning">Delete</button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                                 <hr />
                             </div>
                         </div>
