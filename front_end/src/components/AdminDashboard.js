@@ -11,6 +11,7 @@ function AdminDashboard () {
     const data = localStorage.getItem('admin')
     const dt = JSON.parse(data)
     const [buyers, setBuyers] = useState([])
+    const [delivery, setDelivery] = useState([])
 
     // clear localStorage : 
     function clearSess () {
@@ -18,8 +19,18 @@ function AdminDashboard () {
         history.push("/AdminLogin")
     }
 
+    // fetch for delivery data
+    function fetchDelivery () {
+        fetch("http://localhost:3001/api/delivery/all").then(res => {
+            return res.json()
+        }).then(data => {
+            console.log(data)
+        })
+    }
+
     useEffect(() => {
         if(token){
+            // fetch for buyers data
             fetch("http://localhost:3001/api/users/allBuyers").then(res => {
                 return res.json()
             }).then(data => {
@@ -121,7 +132,7 @@ function AdminDashboard () {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {buyers.map( (i) => (
+                                        {delivery.map( (i) => (
                                             <tr>
                                                 <td>{i._id}</td>
                                                 <td>{i.fullname}</td>
