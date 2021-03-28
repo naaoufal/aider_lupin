@@ -82,3 +82,17 @@ Content-Type: application/json
     "password" : "azer"
 }
 
+###
+
+GET http://localhost:3001/api/delivery/all
+
+###
+
+POST http://localhost:3001/api/delivery/add
+
+{
+    "fullname" : "delivery 1",
+    "email" : "delivery1@gmail.com",
+    "phone" : 614675855,
+    "stat" : "available",
+}

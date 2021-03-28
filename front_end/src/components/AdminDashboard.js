@@ -109,6 +109,30 @@ function AdminDashboard () {
                             <div className="panel-body">
                                 <h3 className="thin">Delivery Tables :</h3>
                                 <hr />
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Fullname</td>
+                                            <td>Email</td>
+                                            <td>Phone</td>
+                                            <td>Status</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {buyers.map( (i) => (
+                                            <tr>
+                                                <td>{i._id}</td>
+                                                <td>{i.fullname}</td>
+                                                <td>{i.email}</td>
+                                                <td>{i.phone}</td>
+                                                <td>{i.stat}</td>
+                                                <td><button className="btn btn-warning">Delete</button> <button className="btn btn-info">Edit</button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
