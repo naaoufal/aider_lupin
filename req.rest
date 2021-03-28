@@ -89,10 +89,11 @@ GET http://localhost:3001/api/delivery/all
 ###
 
 POST http://localhost:3001/api/delivery/add
+Content-Type : application/json
 
 {
-    "fullname" : "delivery 1",
-    "email" : "delivery1@gmail.com",
+    "fullname" : "delivery 2",
+    "email" : "delivery2@gmail.com",
     "phone" : 614675855,
-    "stat" : "available",
+    "stat" : "available"
 }
