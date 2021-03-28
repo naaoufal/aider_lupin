@@ -16,6 +16,7 @@ app.use("/api/superadmins", require("./back_end/routes/superAdmins.js"))
 app.use("/api/admins", require("./back_end/routes/admins.js"))
 app.use("/api/productsType", require("./back_end/routes/productType.js"))
 app.use("/api/users", require("./back_end/routes/users.js"))
+app.use("/api/delivery", require("./back_end/routes/delivery.js"))
 
 
 // start the server

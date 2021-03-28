@@ -18,7 +18,7 @@ async function add (req, res) {
         stat : req.body.stat
     })
     try {
-        const newDelivery = await admin.save()
+        const newDelivery = await delivery.save()
         res.json(newDelivery)
     } catch (err) {
         res.json({message : err.message})
