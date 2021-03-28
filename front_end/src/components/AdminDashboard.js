@@ -24,19 +24,25 @@ function AdminDashboard () {
         fetch("http://localhost:3001/api/delivery/all").then(res => {
             return res.json()
         }).then(data => {
-            console.log(data)
+            //console.log(data)
+            setDelivery(data)
+        })
+    }
+
+    // fetch for buyers data
+    function fetchBuyers () {
+        fetch("http://localhost:3001/api/users/allBuyers").then(res => {
+            return res.json()
+        }).then(data => {
+            //console.log(data)
+            setBuyers(data)
         })
     }
 
     useEffect(() => {
         if(token){
-            // fetch for buyers data
-            fetch("http://localhost:3001/api/users/allBuyers").then(res => {
-                return res.json()
-            }).then(data => {
-                //console.log(data)
-                setBuyers(data)
-            })
+            fetchBuyers()
+            fetchDelivery()
         } else {
             history.push("/AdminLogin")
         }
