@@ -8,6 +8,7 @@ import AdminDashboard from './components/AdminDashboard'
 import AdminReset from './components/AdminReset';
 import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister'
+import UserHome from './components/UserHome';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/ResetPassword" exact component={AdminReset} />
           <Route path="/UserRegister" exact component={UserRegister} />
           <Route path="/UserLogin" exact component={UserLogin} />
+          <Route path="/UserHome" exact component={UserHome} />
+          
         </Switch>
       </div>
     </Router>

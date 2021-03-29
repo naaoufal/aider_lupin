@@ -83,10 +83,10 @@ POST http://localhost:3001/api/users/add
 Content-Type: application/json
 
 {
-    "fullname" : "test test",
-    "email" : "test@gmail.com",
+    "fullname" : "test2",
+    "email" : "test2@gmail.com",
     "phone" : 614675855,
-    "roleUser" : "buyer",
+    "role" : "buyer",
     "is_reseted" : false,
     "password" : "azer"
 }

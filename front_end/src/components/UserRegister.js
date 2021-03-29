@@ -4,14 +4,40 @@ import { useHistory } from "react-router-dom"
 
 function UserRegister () {
 
-    const [fullname, setFullname] = useState([])
-    const [phone, setPhone] = useState([])
-    const [email, setEmail] = useState([])
-    const [password, setPassword] = useState([])
-    const [role, setRole] = useState([])
+    let history = useHistory()
+
+    const [fn, setFullname] = useState([])
+    const [ph, setPhone] = useState([])
+    const [em, setEmail] = useState([])
+    const [ps, setPassword] = useState([])
+    const [rl, setRole] = useState([])
 
     function submitUser () {
-        console.log(role)
+        fetch("http://localhost:3001/api/users/add", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                fullname : fn,
+                phone : ph,
+                email : em,
+                password : ps,
+                is_reseted : false,
+                role : rl
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            //console.log(data)
+            if (data) {
+                alert("Your Account is Created Successfuly")
+                history.push("/UserLogin")
+            } else {
+                alert("Error")
+                history.push("/UserRegister")
+            }
+        })
     }
 
     useEffect(() => {

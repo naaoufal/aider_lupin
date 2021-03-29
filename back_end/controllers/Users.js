@@ -31,7 +31,7 @@ async function add (req, res) {
         phone : req.body.phone,
         password : req.body.password,
         is_reseted : req.body.is_reseted,
-        roleUser : req.body.roleUser
+        role : req.body.role
     })
     try {
         const newUser = await user.save()
