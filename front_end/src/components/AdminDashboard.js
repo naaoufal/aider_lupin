@@ -150,6 +150,40 @@ function AdminDashboard () {
                                         ))}
                                     </tbody>
                                 </table>
+                                <hr />
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleAdd">
+                                Add New Delivery
+                                </button>
+                                {/* modal to add new delivery */}
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Administrator</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter admin full name" className="form-control" id="full" required/>
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="email" placeholder="Enter admin email" className="form-control" id="email" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter admin phone" className="form-control" id="phone" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="password" placeholder="Enter admin password" className="form-control" id="password" required />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Add</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
