@@ -6,6 +6,8 @@ import NormalAdmin from './components/NormalAdmin';
 import SuperAdminDashboard from './components/SuperAdminDashboard';
 import AdminDashboard from './components/AdminDashboard'
 import AdminReset from './components/AdminReset';
+import UserLogin from './components/UserLogin';
+import UserRegister from './components/UserRegister'
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/SuperDashboard" exact component={SuperAdminDashboard} />
           <Route path="/AdminDashboard" exact component={AdminDashboard} />
           <Route path="/ResetPassword" exact component={AdminReset} />
+          <Route path="/UserRegister" exact component={UserRegister} />
+          <Route path="/UserLogin" exact component={UserLogin} />
         </Switch>
       </div>
     </Router>
