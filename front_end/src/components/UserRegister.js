@@ -3,6 +3,21 @@ import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 
 function UserRegister () {
+
+    const [fullname, setFullname] = useState([])
+    const [phone, setPhone] = useState([])
+    const [email, setEmail] = useState([])
+    const [password, setPassword] = useState([])
+    const [role, setRole] = useState([])
+
+    function submitUser () {
+        console.log(role)
+    }
+
+    useEffect(() => {
+
+    })
+
     return (
         <div className="container">
             <ol class="breadcrumb">
@@ -21,22 +36,22 @@ function UserRegister () {
                                     <div>
                                     <div class="top-margin">
                                             <label>Fullname <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" required />
+                                            <input onChange={event => setFullname(event.target.value)} type="text" class="form-control" required />
                                         </div>
                                         <div class="top-margin">
                                             <label>Phone <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" required />
+                                            <input onChange={event => setPhone(event.target.value)} type="text" class="form-control" required />
                                         </div>
                                         <div class="top-margin">
                                             <label>Email <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" required />
+                                            <input onChange={event => setEmail(event.target.value)} type="text" class="form-control" required />
                                         </div>
                                         <div class="top-margin">
                                             <label>Password <span class="text-danger">*</span></label>
-                                            <input type="password" class="form-control" required />
+                                            <input onChange={event => setPassword(event.target.value)} type="password" class="form-control" required />
                                         </div>
                                         <div class="top-margin">
-                                            <select className="form-control">
+                                            <select onChange={event => setRole(event.target.value)} className="form-control">
                                                 <option>Select Your Option</option>
                                                 <option value="seller">Seller</option>
                                                 <option value="buyer">Buyer</option>
@@ -47,7 +62,7 @@ function UserRegister () {
                                             <div class="col-lg-8">
                                             </div>
                                             <div class="col-lg-4 text-right">
-                                                <button class="btn btn-action" type="submit">Sign up</button>
+                                                <button onClick={submitUser} class="btn btn-action" type="submit">Sign up</button>
                                             </div>
                                         </div>
                                     </div>
