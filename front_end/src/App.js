@@ -10,6 +10,7 @@ import UserLogin from './components/UserLogin';
 import UserRegister from './components/UserRegister'
 import UserHome from './components/UserHome';
 import UserDashboard from './components/UserDashboard';
+import SellerReset from './components/SellerReset';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/UserLogin" exact component={UserLogin} />
           <Route path="/Home" exact component={UserHome} />
           <Route path="/SellerDashboard" exact component={UserDashboard} />
+          <Route path="/SellerReset" exact component={SellerReset} />
         </Switch>
       </div>
     </Router>

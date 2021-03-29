@@ -9,6 +9,8 @@ router.get("/allBuyers", userCon.allBuyers)
 
 router.get("/allSellers", userCon.allSellers)
 
+router.get("/allUser", userCon.allUser)
+
 router.post("/add", userCon.add)
 
 router.patch("/edit/:id", userCon.edit)

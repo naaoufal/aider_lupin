@@ -24,6 +24,15 @@ async function allSellers (req, res) {
     }
 }
 
+async function allUser (req, res) {
+    try {
+        const users = await Users.find()
+        res.json(users)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
 async function add (req, res) {
     const user = new Users({
         fullname : req.body.fullname,
@@ -67,6 +76,7 @@ async function deleteUser (req, res) {
 module.exports = {
     allBuyers,
     allSellers,
+    allUser,
     edit,
     add,
     deleteUser
