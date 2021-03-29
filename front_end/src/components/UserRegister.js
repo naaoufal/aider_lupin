@@ -86,6 +86,7 @@ function UserRegister () {
                                         <hr/>
                                         <div class="row">
                                             <div class="col-lg-8">
+                                                <Link to="/UserLogin">Already have an Account</Link>
                                             </div>
                                             <div class="col-lg-4 text-right">
                                                 <button onClick={submitUser} class="btn btn-action" type="submit">Sign up</button>

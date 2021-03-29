@@ -32,6 +32,7 @@ function UserLogin () {
 
                                         <div class="row">
                                             <div class="col-lg-8">
+                                            <Link to="/UserRegister">Create New Account</Link>
                                             </div>
                                             <div class="col-lg-4 text-right">
                                                 <button class="btn btn-action" type="submit">Sign in</button>
