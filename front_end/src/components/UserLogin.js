@@ -16,11 +16,12 @@ function UserLogin () {
             data.map(i => {
                 //console.log(i)
                 if(i.email == em && i.password == ps && i.role == rl) {
-                    console.log(i)
-                    //localStorage.setItem('userInfo', i)
+                    //console.log(i)
                     if(rl == "seller") {
+                        localStorage.setRole('sellerInfo', i)
                         history.push("/SellerDashboard")
                     } else {
+                        localStorage.setItem('buyerInfo', i)
                         history.push("/Home")
                     }
                 }
