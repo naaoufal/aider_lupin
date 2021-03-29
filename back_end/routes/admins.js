@@ -14,7 +14,7 @@ router.get("/all", access, adminCon.all)
 
 router.get("/allAdmins", adminCon.allAdmins)
 
-router.patch("/edit/:id", access, adminCon.edit)
+router.patch("/edit/:id", adminCon.edit)
 
 router.delete("/delete/:id", access, adminCon.deleteAdmin)
 

@@ -5,6 +5,7 @@ import NavBar from './components/NavBar'
 import NormalAdmin from './components/NormalAdmin';
 import SuperAdminDashboard from './components/SuperAdminDashboard';
 import AdminDashboard from './components/AdminDashboard'
+import AdminReset from './components/AdminReset';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Route path="/AdminLogin" exact component={NormalAdmin} />
           <Route path="/SuperDashboard" exact component={SuperAdminDashboard} />
           <Route path="/AdminDashboard" exact component={AdminDashboard} />
-          <Route path="/" />
+          <Route path="/ResetPassword" exact component={AdminReset} />
         </Switch>
       </div>
     </Router>

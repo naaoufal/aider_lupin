@@ -41,6 +41,15 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qY
 
 ###
 
+PATCH http://localhost:3001/api/admins/edit/6051179c422fce237c792597
+Content-Type: application/json
+
+{
+    "password" : "test test"
+}
+
+###
+
 DELETE http://localhost:3001/api/admins/delete/605360841aec771064e4fbab
 
 ###

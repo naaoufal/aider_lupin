@@ -37,8 +37,12 @@ function NormalAdmin () {
                     admin.map(i => {
                         if(i.email == em && i.password == pass){
                             localStorage.setItem('admin', JSON.stringify(i))
-                            //console.log(i)
-                            history.push("/AdminDashboard")
+                            //console.log(i.is_reseted)
+                            if(i.is_reseted == false) {
+                                history.push("/ResetPassword")
+                            } else {
+                                history.push("/AdminDashboard")
+                            }
                         }
                     })
                 })
