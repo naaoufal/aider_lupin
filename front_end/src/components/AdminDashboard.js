@@ -155,7 +155,7 @@ function AdminDashboard () {
                                 Add New Delivery
                                 </button>
                                 {/* modal to add new delivery */}
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">
@@ -174,7 +174,7 @@ function AdminDashboard () {
                                                 <input type="text" placeholder="Enter admin phone" className="form-control" id="phone" required />
                                             </div>
                                             <div className="form-group">
-                                                <input type="password" placeholder="Enter admin password" className="form-control" id="password" required />
+                                                <input type="text" className="form-control" placeholder="Enter the status of delivery man" id="stat" required />
                                             </div>
                                         </div>
                                         <div class="modal-footer">
