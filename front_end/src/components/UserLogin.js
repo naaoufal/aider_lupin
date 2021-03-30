@@ -18,10 +18,12 @@ function UserLogin () {
                 if(i.email == em && i.password == ps && i.role == rl) {
                     //console.log(i)
                     if(rl == "seller") {
-                        localStorage.setRole('sellerInfo', i)
+                        //console.log(i)
+                        localStorage.setItem('sellerInfo', JSON.stringify(i))
                         history.push("/SellerDashboard")
                     } else {
-                        localStorage.setItem('buyerInfo', i)
+                        //console.log(i)
+                        localStorage.setItem('buyerInfo', JSON.stringify(i))
                         history.push("/Home")
                     }
                 }
