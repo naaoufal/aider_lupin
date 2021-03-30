@@ -40,7 +40,8 @@ async function add (req, res) {
         phone : req.body.phone,
         password : req.body.password,
         is_reseted : req.body.is_reseted,
-        role : req.body.role
+        role : req.body.role,
+        userType : req.body.userType
     })
     try {
         const newUser = await user.save()

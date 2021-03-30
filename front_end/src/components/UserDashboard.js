@@ -58,7 +58,11 @@ function UserDashboard () {
                                     <thead>
                                         <tr>
                                             <td>ID</td>
-                                            <td></td>
+                                            <td>Name</td>
+                                            <td>Type</td>
+                                            <td>Price</td>
+                                            <td>Image</td>
+                                            <td>Description</td>
                                         </tr>
                                     </thead>
                                 </table>
@@ -71,7 +75,7 @@ function UserDashboard () {
                     <div className="col-md text-center">
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <h3 className="thin">Delivery Tables :</h3>
+                                <h3 className="thin">Pricing Select :</h3>
                                 <hr />
                                 <hr />
                             </div>

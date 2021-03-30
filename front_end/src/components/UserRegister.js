@@ -24,7 +24,9 @@ function UserRegister () {
                 email : em,
                 password : ps,
                 is_reseted : false,
-                role : rl
+                role : rl,
+                userType : starter,
+                numberOfSell : 0
             })
         }).then(res => {
             return res.json()
