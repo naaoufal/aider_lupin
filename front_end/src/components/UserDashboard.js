@@ -6,7 +6,7 @@ function UserDashboard () {
 
     let history = useHistory()
 
-    const [productType, setType] = useState([])
+    const [productType, setProductType] = useState([])
     const data = localStorage.getItem('sellerInfo')
     const dt = JSON.parse(data)
 
@@ -16,14 +16,26 @@ function UserDashboard () {
         history.push("/UserLogin")
     }
 
+    // render data for type product
     function renderProductType () {
         fetch("http://localhost:3001/api/productsType/all").then(res => {
             return res.json()
         }).then(data => {
             //console.log(data)
-            setType(data)
+            setProductType(data)
         })
     }
+
+    // add new product
+    function addNewProduct () {
+        const proType = document.querySelector('#proType').value
+
+        //console.log(proType)
+    }
+
+    useEffect(() => {
+        
+    })
 
     return (
         <body className="home">
@@ -93,11 +105,11 @@ function UserDashboard () {
                                                 <input type="text" placeholder="Enter product name" className="form-control" id="name" required/>
                                             </div>
                                             <div className="form-group">
-                                                <select className="form-control">
-                                                {productType.map((i) => (
+                                                <select className="form-control" id="proType">
                                                     <option>Select Your Product Type</option>
-                                                    <option>{i.name}</option>
-                                                ))}
+                                                    {productType.map((i) => (
+                                                        <option value={i.name}>{i.name}</option>
+                                                    ))}
                                                 </select>
                                             </div>
                                             <div className="form-group">
@@ -112,7 +124,7 @@ function UserDashboard () {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Add</button>
+                                            <button type="button" onClick={addNewProduct} class="btn btn-primary">Add</button>
                                         </div>
                                         </div>
                                     </div>
@@ -125,8 +137,32 @@ function UserDashboard () {
                     <div className="col-md text-center">
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <h3 className="thin">Pricing Select :</h3>
+                                <h3 className="thin">Pricing Table</h3>
                                 <hr />
+                                <div className="col-sm-6">
+                                    <div className="panel panel-warning">
+                                        <div className="panel-heading">
+                                            <h2>Pro Account</h2>
+                                        </div>
+                                        <div className="panel panel-body">
+                                            <p>You can t depasse more than 50 products</p>
+                                            <p>Standart Delivery</p>
+                                            <button className="btn btn-primary">Buy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-6">
+                                    <div className="panel panel-warning">
+                                        <div className="panel-heading">
+                                            <h2>Expret Account</h2>
+                                        </div>
+                                        <div className="panel panel-body">
+                                            <p>You can sell infinite products</p>
+                                            <p>Express Delivery</p>
+                                            <button className="btn btn-primary">Buy</button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <hr />
                             </div>
                         </div>
