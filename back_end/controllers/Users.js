@@ -41,7 +41,8 @@ async function add (req, res) {
         password : req.body.password,
         is_reseted : req.body.is_reseted,
         role : req.body.role,
-        userType : req.body.userType
+        userType : req.body.userType,
+        numberOfSell : req.body.numberOfSell
     })
     try {
         const newUser = await user.save()

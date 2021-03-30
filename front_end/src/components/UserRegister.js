@@ -25,7 +25,7 @@ function UserRegister () {
                 password : ps,
                 is_reseted : false,
                 role : rl,
-                userType : starter,
+                userType : "starter",
                 numberOfSell : 0
             })
         }).then(res => {

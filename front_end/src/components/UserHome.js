@@ -13,6 +13,23 @@ function UserHome () {
         history.push("/UserLogin")
     }
 
+    function resetStatAndPoints () {
+        fetch(`http://localhost:3001/api/users/edit/${dt._id}`, {
+            method : 'PATCH',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                userType : "user",
+                numberOfSell : 0
+            })
+        })
+    }
+
+    useEffect(() => {
+        resetStatAndPoints()
+    })
+
     return (
         <body className="home">
         <div class="navbar navbar-inverse navbar-fixed-top headroom" >
@@ -41,6 +58,7 @@ function UserHome () {
 
             <div className="jumbotron top-space">
                 <h4>General Information :</h4>
+                <p>ID : {dt._id}</p>
                 <p>Full name : {dt.fullname}</p>
                 <p>Email : {dt.email}</p>
             </div>
@@ -50,19 +68,9 @@ function UserHome () {
                 <div className="col-md text-center">
                     <div className="panel panel-default">
                         <div className="panel-body">
-                            <h3 class="thin">Administrator Table :</h3>
+                            <h3 class="thin">Products</h3>
                             <hr />
-                            
                             <hr />
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md text-center">
-                    <div className="panel panel-default">
-                        <div className="panel-body">
-                            <h3 class="thin">Sellers Table :</h3>
-                            <hr />
-                            
                         </div>
                     </div>
                 </div>
