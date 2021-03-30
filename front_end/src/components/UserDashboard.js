@@ -52,8 +52,16 @@ function UserDashboard () {
                     <div className="col-md text-center">
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <h3 className="thin">Buyers Tables :</h3>
+                                <h3 className="thin">Products Tables :</h3>
                                 <hr />
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                </table>
                                 <hr />
                             </div>
                         </div>
