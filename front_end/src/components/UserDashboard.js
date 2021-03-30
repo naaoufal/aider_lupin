@@ -93,9 +93,11 @@ function UserDashboard () {
                                                 <input type="text" placeholder="Enter product name" className="form-control" id="name" required/>
                                             </div>
                                             <div className="form-group">
-                                                {}
                                                 <select className="form-control">
+                                                {productType.map((i) => (
                                                     <option>Select Your Product Type</option>
+                                                    <option>{i.name}</option>
+                                                ))}
                                                 </select>
                                             </div>
                                             <div className="form-group">
