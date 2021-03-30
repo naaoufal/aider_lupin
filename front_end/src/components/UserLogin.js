@@ -19,8 +19,13 @@ function UserLogin () {
                     //console.log(i)
                     if(rl == "seller") {
                         //console.log(i)
-                        localStorage.setItem('sellerInfo', JSON.stringify(i))
-                        history.push("/SellerDashboard")
+                        if(i.is_reseted == false) {
+                            localStorage.setItem('resetInfo', JSON.stringify(i))
+                            history.push("/SellerReset")
+                        } else {
+                            localStorage.setItem('sellerInfo', JSON.stringify(i))
+                            history.push("/SellerDashboard")
+                        }
                     } else {
                         //console.log(i)
                         localStorage.setItem('buyerInfo', JSON.stringify(i))

@@ -54,7 +54,7 @@ function UserDashboard () {
                             <div className="panel-body">
                                 <h3 className="thin">Products Tables :</h3>
                                 <hr />
-                                <table>
+                                <table className="table table-striped">
                                     <thead>
                                         <tr>
                                             <td>ID</td>
