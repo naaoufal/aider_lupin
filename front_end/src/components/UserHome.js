@@ -47,13 +47,10 @@ function UserHome () {
         </div>
         <header id="head" class="secondary"></header>
         <div className="container">
-            <ol class="breadcrumb">
-                <li><Link to="/Home">Dashboard</Link></li>
-                <li class="active">User access</li>
-            </ol>
+            
 
             <header class="page-header">
-                <h1 class="page-title">Dashboard</h1>
+                <h1 class="page-title">Banner Field</h1>
             </header>
 
             <div className="jumbotron top-space">
@@ -68,8 +65,9 @@ function UserHome () {
                 <div className="col-md text-center">
                     <div className="panel panel-default">
                         <div className="panel-body">
-                            <h3 class="thin">Products</h3>
+                            <h3 class="thin">All Products</h3>
                             <hr />
+
                             <hr />
                         </div>
                     </div>
