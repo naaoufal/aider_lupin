@@ -6,6 +6,7 @@ function UserDashboard () {
 
     let history = useHistory()
 
+    const [productType, setType] = useState([])
     const data = localStorage.getItem('sellerInfo')
     const dt = JSON.parse(data)
 
@@ -13,6 +14,15 @@ function UserDashboard () {
     function clearUserSess () {
         localStorage.clear()
         history.push("/UserLogin")
+    }
+
+    function renderProductType () {
+        fetch("http://localhost:3001/api/productsType/all").then(res => {
+            return res.json()
+        }).then(data => {
+            //console.log(data)
+            setType(data)
+        })
     }
 
     return (
@@ -67,6 +77,44 @@ function UserDashboard () {
                                     </thead>
                                 </table>
                                 <hr />
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Add New Product
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter product name" className="form-control" id="name" required/>
+                                            </div>
+                                            <div className="form-group">
+                                                {}
+                                                <select className="form-control">
+                                                    <option>Select Your Product Type</option>
+                                                </select>
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter product price" className="form-control" id="price" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="file" className="form-control" id="image" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter product description" className="form-control" id="desc" required />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Add</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
