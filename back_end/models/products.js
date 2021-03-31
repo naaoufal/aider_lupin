@@ -4,23 +4,23 @@ const productSchema = new mongoose.Schema({
 
     name : {
         type : String,
-        required : true,
+        // required : true,
     },
     image : {
         type : String,
-        required : true,
+        // required : true,
     },
     productType : {
         type : Number,
-        required : true
+        // required : true
     },
     price : {
         type : Number,
-        required : true
+        // required : true
     },
     desc : {
         type : String,
-        required : true
+        // required : true
     }
 
 })
