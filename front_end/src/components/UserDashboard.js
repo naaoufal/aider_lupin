@@ -39,7 +39,7 @@ function UserDashboard () {
     }
 
     useEffect(() => {
-        
+        renderProductType()
     })
 
     return (
@@ -125,7 +125,7 @@ function UserDashboard () {
                                                 <input type="file" className="form-control" id="image" required />
                                             </div>
                                             <div className="form-group">
-                                                <input type="text" placeholder="Enter product description" className="form-control" id="desc" required />
+                                                <textarea placeholder="Enter product description" className="form-control" id="desc" required></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
