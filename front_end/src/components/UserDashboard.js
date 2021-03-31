@@ -41,8 +41,8 @@ function UserDashboard () {
         //console.log(proType)
     }
 
-    function BuyPack (id) {
-        console.log(id)
+    function buyPack (id) {
+        console.log("this is good", id)
     }
 
     useEffect(() => {
@@ -160,7 +160,7 @@ function UserDashboard () {
                                             <div className="panel panel-body">
                                                 <p>{i.desc}</p>
                                                 <input type="hidden" id="score" value={i.score} />
-                                                <button onClick={BuyPack(i._id)} className="btn btn-primary">Buy</button>
+                                                <button onClick={() => buyPack(i._id)} className="btn btn-primary">Buy</button>
                                             </div>
                                         </div>
                                     </div>
