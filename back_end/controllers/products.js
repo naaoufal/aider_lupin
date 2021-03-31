@@ -13,7 +13,7 @@ async function all (req, res) {
 async function add (req, res) {
     const product = new Products({
         name : req.body.name,
-        image : req.body.image,
+        image : req.file[0].image,
         productType : req.body.productType,
         price : req.body.price,
         desc : req.body.desc
