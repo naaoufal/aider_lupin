@@ -18,7 +18,7 @@ const productCon = require("../controllers/products")
 
 
 
-// router.post("/add", upload.single('image'), productCon.add)
+router.post("/add", upload, productCon.add)
 
 router.get("/all", productCon.all)
 
