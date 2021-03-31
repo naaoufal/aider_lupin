@@ -12,13 +12,6 @@ app.use(express.json());
 
 app.use(cors());
 
-// config paypal
-paypal.configure({
-    'mode': 'sandbox', //sandbox or live
-    'client_id': process.env.ID_CLIENT,
-    'client_secret': process.env.SECRET
-})
-
 
 // declare our endpoints here:
 app.use("/api/superadmins", require("./back_end/routes/superAdmins.js"))
