@@ -1,6 +1,7 @@
 const express = require("express")
 const socket = require("socket.io")
-const cors = require('cors');
+const cors = require('cors')
+const paypal = require('paypal-rest-sdk')
 require("dotenv").config()
 const connectDB = require("./back_end/config/mongodb")
 const app = express()
@@ -10,6 +11,14 @@ connectDB()
 app.use(express.json());
 
 app.use(cors());
+
+// config paypal
+paypal.configure({
+    'mode': 'sandbox', //sandbox or live
+    'client_id': '',
+    'client_secret': ''
+})
+
 
 // declare our endpoints here:
 app.use("/api/superadmins", require("./back_end/routes/superAdmins.js"))

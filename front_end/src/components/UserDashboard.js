@@ -27,13 +27,6 @@ function UserDashboard () {
         })
     }
 
-    // render data for pricing
-    fetch("http://localhost:3001/api/pricing/all").then(res => {
-        return res.json()
-    }).then(data => {
-        setPricing(data)
-    })
-
     // add new product
     function addNewProduct () {
         const proType = document.querySelector('#proType').value
@@ -79,6 +72,7 @@ function UserDashboard () {
                     <h4>General Information :</h4>
                     <p>Full name : {dt.fullname}</p>
                     <p>Email : {dt.email}</p>
+                    <p>Pack Promos is : {dt.userType}</p>
                 </div>
 
                 <br /> <br />
@@ -151,20 +145,30 @@ function UserDashboard () {
                             <div className="panel-body">
                                 <h3 className="thin">Pricing Table</h3>
                                 <hr />
-                                {allPricing.map((i) => (
-                                    <div className="col-sm-6">
-                                        <div className="panel panel-warning">
-                                            <div className="panel-heading">
-                                                <h2>{i.name}</h2>
-                                            </div>
-                                            <div className="panel panel-body">
-                                                <p>{i.desc}</p>
-                                                <input type="hidden" id="score" value={i.score} />
-                                                <button onClick={() => buyPack(i._id)} className="btn btn-primary">Buy</button>
-                                            </div>
+                                <div className="col-sm-6">
+                                    <div className="panel panel-warning">
+                                        <div className="panel-heading">
+                                            <h2>Pro Pack</h2>
+                                        </div>
+                                        <div className="panel panel-body">
+                                            <p>This is a Pro Pack</p>
+                                            <input type="hidden" id="score" value="3000" />
+                                            <button className="btn btn-primary">Buy</button>
                                         </div>
                                     </div>
-                                ))}
+                                </div>
+                                <div className="col-sm-6">
+                                    <div className="panel panel-warning">
+                                        <div className="panel-heading">
+                                            <h2>Expert Pack</h2>
+                                        </div>
+                                        <div className="panel panel-body">
+                                            <p>This is a Expert Pack</p>
+                                            <input type="hidden" id="score" value="5000" />
+                                            <button className="btn btn-primary">Buy</button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <hr />
                             </div>
                         </div>
