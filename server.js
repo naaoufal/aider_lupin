@@ -15,8 +15,8 @@ app.use(cors());
 // config paypal
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id': '',
-    'client_secret': ''
+    'client_id': process.env.ID_CLIENT,
+    'client_secret': process.env.SECRET
 })
 
 
