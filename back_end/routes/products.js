@@ -6,7 +6,7 @@ var filestorage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, '../lupin/front_end/public/images')
     },
-    filename: function (req, file, cb) {
+    filename : function (req, file, cb) {
       cb(null, file.fieldname + '-' + Date.now() + '.png')
     }
 })
@@ -18,7 +18,7 @@ const productCon = require("../controllers/products")
 
 
 
-router.post("/add", upload.any(), productCon.add)
+router.post("/add", upload.single('image'), productCon.add)
 
 router.get("/all", productCon.all)
 
