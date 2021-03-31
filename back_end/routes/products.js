@@ -18,13 +18,13 @@ const productCon = require("../controllers/products")
 
 
 
-router.post("/add", upload, productCon.add)
+// router.post("/add", upload.single('image'), productCon.add)
 
 router.get("/all", productCon.all)
 
-router.patch("/edit/:id", upload, productCon.edit)
+// router.patch("/edit/:id", upload.single('image'), productCon.edit)
 
-router.delete("/delete/:id", productCon.deleteOne)
+// router.delete("/delete/:id", productCon.deleteOne)
 
 
 module.exports = router
