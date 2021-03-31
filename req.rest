@@ -106,3 +106,18 @@ Content-Type : application/json
     "phone" : 614675855,
     "stat" : "available"
 }
+
+###
+
+GET http://localhost:3001/api/pricing/all
+
+###
+
+POST http://localhost:3001/api/pricing/add
+Content-Type: application/json
+
+{
+    "name" : "Expert Pack",
+    "score" : 5000,
+    "desc" : "This is an Expert Pack, You can sell infinite products Express Delivery"
+}

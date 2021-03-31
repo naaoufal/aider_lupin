@@ -4,7 +4,7 @@ const Pricing = require('../models/pricing')
 async function all (req, res) {
     try {
         const pricing = await Pricing.find()
-        res.json(admins)
+        res.json(pricing)
     } catch (error) {
         res.json({message : error.message})
     }
@@ -41,7 +41,7 @@ async function edit (req, res) {
 }
 
 async function deleteOne (req, res) {
-    Admins.findByIdAndDelete(req.params.id).then( () => {
+    Pricing.findByIdAndDelete(req.params.id).then( () => {
         res.json()
     })
 }

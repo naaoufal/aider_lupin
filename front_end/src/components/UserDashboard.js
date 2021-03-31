@@ -7,6 +7,7 @@ function UserDashboard () {
     let history = useHistory()
 
     const [productType, setProductType] = useState([])
+    const [allPricing, setPricing] = useState([])
     const data = localStorage.getItem('sellerInfo')
     const dt = JSON.parse(data)
 
@@ -26,11 +27,22 @@ function UserDashboard () {
         })
     }
 
+    // render data for pricing
+    fetch("http://localhost:3001/api/pricing/all").then(res => {
+        return res.json()
+    }).then(data => {
+        setPricing(data)
+    })
+
     // add new product
     function addNewProduct () {
         const proType = document.querySelector('#proType').value
 
         //console.log(proType)
+    }
+
+    function BuyPack (id) {
+        console.log(id)
     }
 
     useEffect(() => {
@@ -139,30 +151,20 @@ function UserDashboard () {
                             <div className="panel-body">
                                 <h3 className="thin">Pricing Table</h3>
                                 <hr />
-                                <div className="col-sm-6">
-                                    <div className="panel panel-warning">
-                                        <div className="panel-heading">
-                                            <h2>Pro Account</h2>
-                                        </div>
-                                        <div className="panel panel-body">
-                                            <p>You can t depasse more than 50 products</p>
-                                            <p>Standart Delivery</p>
-                                            <button className="btn btn-primary">Buy</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="panel panel-warning">
-                                        <div className="panel-heading">
-                                            <h2>Expret Account</h2>
-                                        </div>
-                                        <div className="panel panel-body">
-                                            <p>You can sell infinite products</p>
-                                            <p>Express Delivery</p>
-                                            <button className="btn btn-primary">Buy</button>
+                                {allPricing.map((i) => (
+                                    <div className="col-sm-6">
+                                        <div className="panel panel-warning">
+                                            <div className="panel-heading">
+                                                <h2>{i.name}</h2>
+                                            </div>
+                                            <div className="panel panel-body">
+                                                <p>{i.desc}</p>
+                                                <input type="hidden" id="score" value={i.score} />
+                                                <button onClick={BuyPack(i._id)} className="btn btn-primary">Buy</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                ))}
                                 <hr />
                             </div>
                         </div>
