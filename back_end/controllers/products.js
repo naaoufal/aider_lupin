@@ -1,6 +1,7 @@
 require('dotenv').config()
 const Products = require('../models/products')
 
+// search for all products to render it in buyer page
 async function all (req, res) {
     try {
         const product = await Products.find()
