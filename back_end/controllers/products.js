@@ -16,7 +16,8 @@ async function add (req, res) {
         image : req.file.filename,
         productType : req.body.productType,
         price : req.body.price,
-        desc : req.body.desc
+        desc : req.body.desc,
+        idSeller : req.body.idSeller
     })
     try {
         const newProduct = await product.save()

@@ -38,8 +38,6 @@ function UserDashboard () {
         formData.append('price', price)
         formData.append('proType', proType)
 
-        console.log(image)
-
         fetch("http://localhost:3001/api/products/add", {
             method : 'POST',
             header : {
@@ -82,16 +80,14 @@ function UserDashboard () {
         })
     }
 
-    // function deleteProduct (id) {
-    //     //console.log(id)
-    //     fetch(`http://localhost:3001/api/products/delete/${id}`, {
-    //         method : 'DELETE'
-    //     }).then(res => {
-    //         return res.json()
-    //     }).then(data => {
-    //         window.location.reload()
-    //     })
-    // }
+    function deleteProduct (id) {
+        //console.log(id)
+        fetch(`http://localhost:3001/api/products/delete/${id}`, {
+            method : 'DELETE'
+        }).then(res => {
+            window.location.reload()
+        })
+    }
 
     useEffect(() => {
 
@@ -162,7 +158,7 @@ function UserDashboard () {
                                                 <td>{i.price}</td>
                                                 <td><img src={"images/"+i.image} /></td>
                                                 <td>{i.desc}</td>
-                                                <td><button className="btn btn-info">Edit</button> <button  className="btn btn-warning">Delete</button></td>
+                                                <td><button className="btn btn-info">Edit</button> <button  className="btn btn-warning" onClick={() => deleteProduct(i._id)} >Delete</button></td>
                                             </tr>
                                         ))}
                                     </tbody>

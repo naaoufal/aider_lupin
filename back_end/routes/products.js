@@ -24,7 +24,7 @@ router.get("/all", productCon.all)
 
 // router.patch("/edit/:id", upload.single('image'), productCon.edit)
 
-// router.delete("/delete/:id", productCon.deleteOne)
+router.delete("/delete/:id", productCon.deleteOne)
 
 
 module.exports = router
