@@ -26,7 +26,14 @@ async function add (req, res) {
     }
 }
 
+async function deleteOne (req, res) {
+    Products.findByIdAndDelete(req.params.id).then( () => {
+        res.json()
+    })
+}
+
 module.exports = {
     all,
-    add
+    add,
+    deleteOne
 }

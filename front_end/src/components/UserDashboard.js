@@ -51,8 +51,8 @@ function UserDashboard () {
         }).then(data => {
             //console.log(data)
             if(data){
-                alert("New Products Added Successully")
-                history.push("/SellerDashboard")
+                alert("New Product Added")
+                renderProductData()
             } else {
                 alert("Error")
             }
@@ -64,31 +64,42 @@ function UserDashboard () {
         console.log("this is good", id)
     }
     
+    // render data for products
+    function renderProductData () {
+        fetch("http://localhost:3001/api/products/all").then(res => {
+            return res.json()
+        }).then(data => {
+            setProducts(data)
+        })
+    }
+
+    // render data for type product
+    function renderProductType () {
+        fetch("http://localhost:3001/api/productsType/all").then(res => {
+            return res.json()
+        }).then(data => {
+            setProductType(data)
+        })
+    }
+
+    // function deleteProduct (id) {
+    //     //console.log(id)
+    //     fetch(`http://localhost:3001/api/products/delete/${id}`, {
+    //         method : 'DELETE'
+    //     }).then(res => {
+    //         return res.json()
+    //     }).then(data => {
+    //         window.location.reload()
+    //     })
+    // }
 
     useEffect(() => {
-        
-        // render data for type product
-        function renderProductType () {
-            fetch("http://localhost:3001/api/productsType/all").then(res => {
-                return res.json()
-            }).then(data => {
-                setProductType(data)
-            })
-        }
 
+        renderProductData()
         renderProductType()
 
-        // render data for products
-        function renderProductData () {
-            fetch("http://localhost:3001/api/products/all").then(res => {
-                return res.json()
-            }).then(data => {
-                setProducts(data)
-            })
-        }
-
-        //renderProductData()
-    })
+        
+    }, [])
 
     return (
         <body className="home">
@@ -139,6 +150,7 @@ function UserDashboard () {
                                             <td>Price</td>
                                             <td>Image</td>
                                             <td>Description</td>
+                                            <td>Actions</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -150,6 +162,7 @@ function UserDashboard () {
                                                 <td>{i.price}</td>
                                                 <td><img src={"images/"+i.image} /></td>
                                                 <td>{i.desc}</td>
+                                                <td><button className="btn btn-info">Edit</button> <button  className="btn btn-warning">Delete</button></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -190,7 +203,7 @@ function UserDashboard () {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" onClick={addNewProduct} class="btn btn-primary">Add</button>
+                                            <button type="button" onClick={addNewProduct} class="btn btn-primary" data-dismiss="modal">Add</button>
                                         </div>
                                         </div>
                                     </div>
