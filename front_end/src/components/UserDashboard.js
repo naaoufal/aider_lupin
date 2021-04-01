@@ -38,22 +38,24 @@ function UserDashboard () {
         formData.append('price', price)
         formData.append('proType', proType)
 
-        fetch("http://localhost:3001/api/products/add", formData, {
-            methood : 'POST',
+        console.log(image)
+
+        fetch("http://localhost:3001/api/products/add", {
+            method : 'POST',
             header : {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'multipart/form-data'
             },
-            body : JSON.stringify({
-                name : name,
-                productType : proType,
-                image : image,
-                price : price,
-                desc : desc
-            })
+            body : formData
         }).then(res => {
             return res.json()
         }).then(data => {
-            console.log(data)
+            //console.log(data)
+            if(data){
+                alert("New Products Added Successully")
+                history.push("/SellerDashboard")
+            } else {
+                alert("Error")
+            }
         })
         
     }
