@@ -1,5 +1,5 @@
 GET http://localhost:3001/api/superadmins/all
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qYW1pbkBnbWFpbC5jb20iLCJhZHBhc3N3b3JkIjoiYXplciIsImlhdCI6MTYxNTg0ODg0OH0.ARuPIMs05CBOGgtJBcgzIYlf0T7Zce_v49hWKgnUpe4
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG5hbWUiOiJiZW5qYW1pbkBnbWFpbC5jb20iLCJhZHBhc3N3b3JkIjoiYXplciIsImlhdCI6MTYxNzMxMTcwNH0.hLvaSN8f6dwZeM1G27S2JwyffjORlpj0diodqbuMjUQ
 ###
 POST http://localhost:3001/api/superadmins/add
 Content-Type: application/json

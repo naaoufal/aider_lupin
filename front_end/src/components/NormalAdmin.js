@@ -41,7 +41,11 @@ function NormalAdmin () {
                             if(i.is_reseted == false) {
                                 history.push("/ResetPassword")
                             } else {
-                                history.push("/AdminDashboard")
+                                if(i.stat == true){
+                                    history.push("/AdminDashboard")
+                                } else {
+                                    history.push("/Suspended")
+                                }
                             }
                         }
                     })

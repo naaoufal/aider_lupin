@@ -11,6 +11,7 @@ import UserRegister from './components/UserRegister'
 import UserHome from './components/UserHome';
 import UserDashboard from './components/UserDashboard';
 import SellerReset from './components/SellerReset';
+import AccountSuspend from './components/AccountSusp';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/Home" exact component={UserHome} />
           <Route path="/SellerDashboard" exact component={UserDashboard} />
           <Route path="/SellerReset" exact component={SellerReset} />
+          <Route path="/Suspended" exact component={AccountSuspend} />
         </Switch>
       </div>
     </Router>

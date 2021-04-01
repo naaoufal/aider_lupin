@@ -20,7 +20,8 @@ function AdminReset () {
                 },
                 body : JSON.stringify({
                     password : psConfirm,
-                    is_reseted : true
+                    is_reseted : true,
+                    stat : true
                 })
             }).then(res => {
                 return res.json()
