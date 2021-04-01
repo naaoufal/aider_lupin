@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import '../image.css'
+import { log } from "winston"
 
 function UserDashboard () {
 
@@ -37,6 +39,7 @@ function UserDashboard () {
         formData.append('desc', desc)
         formData.append('price', price)
         formData.append('proType', proType)
+        formData.append('idSeller', dt._id)
 
         fetch("http://localhost:3001/api/products/add", {
             method : 'POST',
@@ -50,7 +53,7 @@ function UserDashboard () {
             //console.log(data)
             if(data){
                 alert("New Product Added")
-                renderProductData()
+                //renderProductData()
             } else {
                 alert("Error")
             }
@@ -67,7 +70,8 @@ function UserDashboard () {
         fetch("http://localhost:3001/api/products/all").then(res => {
             return res.json()
         }).then(data => {
-            setProducts(data)
+            const result = data.include(dt._id)
+            console.log(result)
         })
     }
 
