@@ -7,6 +7,7 @@ function UserDashboard () {
     let history = useHistory()
 
     const [productType, setProductType] = useState([])
+    const [products, setProducts] = useState([])
     const [allPricing, setPricing] = useState([])
     const data = localStorage.getItem('sellerInfo')
     const dt = JSON.parse(data)
@@ -17,19 +18,11 @@ function UserDashboard () {
         history.push("/UserLogin")
     }
 
-    // render data for type product
-    function renderProductType () {
-        fetch("http://localhost:3001/api/productsType/all").then(res => {
-            return res.json()
-        }).then(data => {
-            //console.log(data)
-            setProductType(data)
-        })
-    }
-
     // add new product
     function addNewProduct () {
+        const name = document.querySelector('').value
         const proType = document.querySelector('#proType').value
+        const price = document.querySelector('').value
 
         //console.log(proType)
     }
@@ -37,9 +30,31 @@ function UserDashboard () {
     function buyPack (id) {
         console.log("this is good", id)
     }
+    
 
     useEffect(() => {
+        
+        // render data for type product
+        function renderProductType () {
+            fetch("http://localhost:3001/api/productsType/all").then(res => {
+                return res.json()
+            }).then(data => {
+                setProductType(data)
+            })
+        }
+
         renderProductType()
+
+        // render data for products
+        function renderProductData () {
+            fetch("http://localhost:3001/api/products/all").then(res => {
+                return res.json()
+            }).then(data => {
+                setProducts(data)
+            })
+        }
+
+        renderProductData()
     })
 
     return (
@@ -93,6 +108,18 @@ function UserDashboard () {
                                             <td>Description</td>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        {products.map((i) => (
+                                            <tr>
+                                                <td>{i._id}</td>
+                                                <td>name</td>
+                                                <td>type</td>
+                                                <td>price</td>
+                                                <td><img src={"images/"+i.image} /></td>
+                                                <td>desc</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
                                 </table>
                                 <hr />
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
