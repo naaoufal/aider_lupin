@@ -10,6 +10,7 @@ async function all (req, res) {
     }
 }
 
+// search for all products of the same seller
 async function allBySeller (req, res) {
     try {
         const product = await Products.find({
