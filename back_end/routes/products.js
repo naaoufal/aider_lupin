@@ -22,6 +22,8 @@ router.post("/add", upload.single('image'), productCon.add)
 
 router.get("/all", productCon.all)
 
+router.get("/allBySeller/:idSeller", productCon.allBySeller)
+
 // router.patch("/edit/:id", upload.single('image'), productCon.edit)
 
 router.delete("/delete/:id", productCon.deleteOne)

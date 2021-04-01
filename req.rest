@@ -121,3 +121,12 @@ Content-Type: application/json
     "score" : 5000,
     "desc" : "This is an Expert Pack, You can sell infinite products Express Delivery"
 }
+
+###
+
+GET http://localhost:3001/api/products/allBySeller/6064507e6de79722e8c2acf8
+
+###
+
+GET http://localhost:3001/api/products/all
+

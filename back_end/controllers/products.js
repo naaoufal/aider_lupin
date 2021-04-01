@@ -3,8 +3,17 @@ const Products = require('../models/products')
 
 async function all (req, res) {
     try {
+        const product = await Products.find()
+        res.json(product)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
+async function allBySeller (req, res) {
+    try {
         const product = await Products.find({
-            idSeller : id
+            idSeller : req.params.idSeller
         })
         res.json(product)
     } catch (error) {
@@ -37,6 +46,7 @@ async function deleteOne (req, res) {
 
 module.exports = {
     all,
+    allBySeller,
     add,
     deleteOne
 }

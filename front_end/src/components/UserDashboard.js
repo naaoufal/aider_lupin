@@ -53,7 +53,7 @@ function UserDashboard () {
             //console.log(data)
             if(data){
                 alert("New Product Added")
-                //renderProductData()
+                renderProductData()
             } else {
                 alert("Error")
             }
@@ -67,11 +67,10 @@ function UserDashboard () {
     
     // render data for products
     function renderProductData () {
-        fetch("http://localhost:3001/api/products/all").then(res => {
+        fetch(`http://localhost:3001/api/products/allBySeller/${dt._id}`).then(res => {
             return res.json()
         }).then(data => {
-            const result = data.include(dt._id)
-            console.log(result)
+            setProducts(data)
         })
     }
 
