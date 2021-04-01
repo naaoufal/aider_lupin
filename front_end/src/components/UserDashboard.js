@@ -9,6 +9,7 @@ function UserDashboard () {
     const [productType, setProductType] = useState([])
     const [products, setProducts] = useState([])
     const [allPricing, setPricing] = useState([])
+    const [image, setImage] = useState({})
     const data = localStorage.getItem('sellerInfo')
     const dt = JSON.parse(data)
 
@@ -18,13 +19,43 @@ function UserDashboard () {
         history.push("/UserLogin")
     }
 
+    // handle images
+    const onchange = (e) => {
+        setImage(e.target.files[0])
+    }
+
     // add new product
     function addNewProduct () {
-        const name = document.querySelector('').value
+        const name = document.querySelector('#name').value
         const proType = document.querySelector('#proType').value
-        const price = document.querySelector('').value
+        const price = document.querySelector('#price').value
+        const desc = document.querySelector('#desc').value
 
-        //console.log(proType)
+        const formData = new FormData()
+        formData.append('image', image)
+        formData.append('name', name)
+        formData.append('desc', desc)
+        formData.append('price', price)
+        formData.append('proType', proType)
+
+        fetch("http://localhost:3001/api/products/add", formData, {
+            methood : 'POST',
+            header : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                name : name,
+                productType : proType,
+                image : image,
+                price : price,
+                desc : desc
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            console.log(data)
+        })
+        
     }
 
     function buyPack (id) {
@@ -54,7 +85,7 @@ function UserDashboard () {
             })
         }
 
-        renderProductData()
+        //renderProductData()
     })
 
     return (
@@ -112,11 +143,11 @@ function UserDashboard () {
                                         {products.map((i) => (
                                             <tr>
                                                 <td>{i._id}</td>
-                                                <td>name</td>
-                                                <td>type</td>
-                                                <td>price</td>
+                                                <td>{i.name}</td>
+                                                <td>{i.productType}</td>
+                                                <td>{i.price}</td>
                                                 <td><img src={"images/"+i.image} /></td>
-                                                <td>desc</td>
+                                                <td>{i.desc}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -149,7 +180,7 @@ function UserDashboard () {
                                                 <input type="text" placeholder="Enter product price" className="form-control" id="price" required />
                                             </div>
                                             <div className="form-group">
-                                                <input type="file" className="form-control" id="image" required />
+                                                <input type="file" onChange={onchange} className="form-control" id="image" required />
                                             </div>
                                             <div className="form-group">
                                                 <textarea placeholder="Enter product description" className="form-control" id="desc" required></textarea>
