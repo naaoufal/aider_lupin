@@ -39,14 +39,58 @@ function AdminDashboard () {
         })
     }
 
+    // add new delivery man
+    function addDelivery () {
+
+        const fn = document.querySelector('#full').value
+        const em = document.querySelector('#email').value
+        const ph = document.querySelector('#phone').value
+        const st = document.querySelector('#stat').value
+
+        fetch("http://localhost:3001/api/delivery/add", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                fullname : fn,
+                email : em,
+                phone : ph,
+                stat : st
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            if(data) {
+                fetchDelivery()
+            } else {
+                alert("Error")
+                fetchDelivery()
+            }
+        })
+    }
+
     function renderProductData() {
-        fetch("")
+        fetch("http://localhost:3001/api/products/all").then(res => {
+            return res.json()
+        }).then(data => {
+            setProducts(data)
+        })
+    }
+
+    function deleteProduct (id) {
+        fetch(`http://localhost:3001/api/products/delete/${id}`, {
+            method : 'DELETE'
+        }).then(res => {
+            renderProductData()
+        })
     }
 
     useEffect(() => {
         if(token){
             fetchBuyers()
             fetchDelivery()
+            renderProductData()
         } else {
             history.push("/AdminLogin")
         }
@@ -183,7 +227,7 @@ function AdminDashboard () {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Add</button>
+                                            <button type="button" data-dismiss="modal" onClick={addDelivery} class="btn btn-primary">Add</button>
                                         </div>
                                         </div>
                                     </div>
@@ -211,7 +255,17 @@ function AdminDashboard () {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {}
+                                        {products.map((i) => (
+                                            <tr>
+                                                <td>{i._id}</td>
+                                                <td>{i.name}</td>
+                                                <td>{i.productType}</td>
+                                                <td>{i.price}</td>
+                                                <td><img src={"images/"+i.image} /></td>
+                                                <td>{i.desc}</td>
+                                                <td><button  className="btn btn-warning" onClick={() => deleteProduct(i._id)} >Delete</button></td>
+                                        </tr>
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>
