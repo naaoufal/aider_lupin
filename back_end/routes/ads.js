@@ -18,7 +18,7 @@ const adsCon = require("../controllers/ads")
 
 
 
-router.post("/add", upload.single('image'), adsCon.add)
+router.post("/addOne", upload.single('image'), adsCon.add)
 
 router.get("/all", adsCon.all)
 

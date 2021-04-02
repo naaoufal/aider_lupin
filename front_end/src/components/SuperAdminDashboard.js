@@ -451,7 +451,7 @@ function SuperAdminDashboard () {
                                         {ads.map((i) => (
                                             <tr>
                                                 <td>{i._id}</td>
-                                                <td><img src={"images"+i.image} /></td>
+                                                <td><img src={"images/"+i.image} /></td>
                                                 <td>{i.price}</td>
                                                 <td>{i.desc}</td>
                                                 <td><button type="button" data-toggle="modal" data-target="#exampleEdit1" className="btn btn-info">Edit</button> <button className="btn btn-warning">Delete</button></td>
