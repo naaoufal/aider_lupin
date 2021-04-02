@@ -2,8 +2,6 @@ import { Link } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import '../user.css'
-import { use } from "../../../back_end/routes/superAdmins"
-import { set } from "mongoose"
 
 function UserHome () {
 
@@ -50,6 +48,7 @@ function UserHome () {
     useEffect(() => {
         resetStatAndPoints()
         renderProducts()
+        renderAds()
     }, [])
 
     return (
@@ -73,7 +72,9 @@ function UserHome () {
 
             <header class="page-header">
                 {ads.map((i) => (
-                    <img className="page-title" src={i.image} />
+                    <center>
+                        <img className="page-title" id="ads" src={"images/"+i.image} />
+                    </center>
                 ))}
             </header>
 
