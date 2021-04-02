@@ -15,6 +15,7 @@ app.use(cors());
 
 // declare our endpoints here:
 app.use("/api/superadmins", require("./back_end/routes/superAdmins.js"))
+app.use("/api/ads", require("./back_end/routes/ads.js"))
 app.use("/api/admins", require("./back_end/routes/admins.js"))
 app.use("/api/productsType", require("./back_end/routes/productType.js"))
 app.use("/api/users", require("./back_end/routes/users.js"))
@@ -25,5 +26,4 @@ app.use("/api/products", require("./back_end/routes/products.js"))
 
 // start the server
 var port = process.env.PORT || 3001
-var server = app.listen(port, () => console.log("the server is started"));
-var io = socket(server)
+app.listen(port, () => console.log("the server is started"));
