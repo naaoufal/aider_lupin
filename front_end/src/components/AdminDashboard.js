@@ -264,7 +264,7 @@ function AdminDashboard () {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" data-dismiss="modal" onClick={editDelivery} class="btn btn-primary">Edit</button>
+                                            <button type="button" data-dismiss="modal" class="btn btn-primary">Edit</button>
                                         </div>
                                         </div>
                                     </div>
