@@ -50,7 +50,7 @@ function UserHome () {
             
 
             <header class="page-header">
-                <h1 class="page-title">Banner Field</h1>
+                <img className="page-title" src="" />
             </header>
 
             <div className="jumbotron top-space">
