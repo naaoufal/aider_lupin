@@ -11,6 +11,18 @@ async function all (req, res) {
     }
 }
 
+// search for all products of the same seller
+async function allBySeller (req, res) {
+    try {
+        const product = await Products.find({
+            idSeller : req.params.idSeller
+        })
+        res.json(product)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
 async function add (req, res) {
     const product = new Products({
         name : req.body.name,

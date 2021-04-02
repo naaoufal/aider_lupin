@@ -20,7 +20,7 @@ const adsCon = require("../controllers/ads")
 
 router.post("/add", upload.single('image'), adsCon.add)
 
-router.get("/all", productCon.all)
+router.get("/all", adsCon.all)
 
 router.delete("/delete/:id", adsCon.deleteOne)
 

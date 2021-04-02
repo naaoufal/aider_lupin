@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import NavBar from "./NavBar"
+import '../image.css'
 
 function SuperAdminDashboard () {
 
@@ -9,6 +10,7 @@ function SuperAdminDashboard () {
     let history = useHistory([])
     const [admin, setAdmins] = useState([])
     const [productType, setType] = useState([])
+    const [ads, setAds] = useState([])
     const token = localStorage.getItem('tokenaccess')
     const data = localStorage.getItem('adminInfo')
     const dt = JSON.parse(data)
@@ -38,7 +40,18 @@ function SuperAdminDashboard () {
         })
     }
 
+    function renderAdsData () {
+        fetch("http://localhost:3001/api/ads/all").then(res => {
+            return res.json()
+        }).then(data => {
+            console.log(data)
+            setAds(data)
+        })
+    }
+
     useEffect(() => {
+
+        renderAdsData()
 
         if (token) {
             
@@ -358,6 +371,86 @@ function SuperAdminDashboard () {
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" onClick={addNewType} class="btn btn-primary">Add</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* modal to edit a type */}
+                                <div class="modal fade" id="exampleEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Type</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter Type Name" className="form-control" id="nameType" required/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" onClick={editType} class="btn btn-primary">Edit</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md text-center">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                                <h3 class="thin">Ads Table :</h3>
+                                <hr />
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Image</td>
+                                            <td>Price</td>
+                                            <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {ads.map((i) => (
+                                            <tr>
+                                                <td>{i._id}</td>
+                                                <td><img src={"images"+i.image} /></td>
+                                                <td>{i.price}</td>
+                                                <td>{i.desc}</td>
+                                                <td><button type="button" data-toggle="modal" data-target="#exampleEdit1" className="btn btn-info">Edit</button> <button className="btn btn-warning">Delete</button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleAds">
+                                Add New Ads
+                                </button>
+                                {/* modal to add new type */}
+                                <div class="modal fade" id="exampleAds" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Ads</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="file" className="form-control" id="image" required/>
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter Price" className="form-control" id="price" required/>
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter Description" className="form-control" id="desc" required/>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
                                         </div>
                                         </div>
                                     </div>
