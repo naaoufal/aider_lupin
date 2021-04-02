@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import '../user.css'
 
 function UserHome () {
 
     let history = useHistory()
     const data = localStorage.getItem('buyerInfo')
     const dt = JSON.parse(data)
+    const [products, setProducts] = useState([])
 
     function clearStorage() {
         localStorage.clear()
@@ -26,9 +28,18 @@ function UserHome () {
         })
     }
 
+    function renderProducts () {
+        fetch("http://localhost:3001/api/products/all").then(res => {
+            return res.json()
+        }).then(data => {
+            setProducts(data)
+        })
+    }
+
     useEffect(() => {
         resetStatAndPoints()
-    })
+        renderProducts()
+    }, [])
 
     return (
         <body className="home">
@@ -53,12 +64,12 @@ function UserHome () {
                 <img className="page-title" src="" />
             </header>
 
-            <div className="jumbotron top-space">
+            {/* <div className="jumbotron top-space">
                 <h4>General Information :</h4>
                 <p>ID : {dt._id}</p>
                 <p>Full name : {dt.fullname}</p>
                 <p>Email : {dt.email}</p>
-            </div>
+            </div> */}
             
             <br /> <br />
             <div className="row">
@@ -67,7 +78,21 @@ function UserHome () {
                         <div className="panel-body">
                             <h3 class="thin">All Products</h3>
                             <hr />
-
+                            {products.map((i) => (
+                                <div className="col-sm-4">
+                                    <div className="panel panel-default">
+                                        <div className="panel-heading">
+                                            <h2>{i.name}</h2>
+                                        </div>
+                                        <div className="panel panel-body">
+                                            <img src={"images/"+i.image} />
+                                            <p>{i.price} $</p>
+                                            <p>{i.desc}</p>
+                                            <button className="btn btn-primary">Buy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                             <hr />
                         </div>
                     </div>
