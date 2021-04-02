@@ -28,6 +28,7 @@ function SuperAdminDashboard () {
         })
     }
 
+    
     function renderTypeData () {
         fetch("http://localhost:3001/api/productsType/all", {
             headers : {
@@ -46,6 +47,40 @@ function SuperAdminDashboard () {
         }).then(data => {
             console.log(data)
             setAds(data)
+        })
+    }
+
+    const [image, setImage] = useState({})
+
+    const onchange = (e) => {
+        setImage(e.target.files[0])
+    }
+
+    function addAds () {
+
+        const price = document.querySelector('#price').value
+        const desc = document.querySelector('#desc').value
+
+        const formData = new FormData()
+        formData.append('image', image)
+        formData.append('price', price)
+        formData.append('desc', desc)
+
+        fetch("http://localhost:3001/api/ads/add", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'multipart/form-data'
+            },
+            body : formData
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            if(data) {
+                alert("Ads Added Successfully")
+                renderAdsData()
+            } else {
+                alert("Error")
+            }
         })
     }
 
@@ -439,7 +474,7 @@ function SuperAdminDashboard () {
                                         </div>
                                         <div class="modal-body">
                                             <div className="form-group">
-                                                <input type="file" className="form-control" id="image" required/>
+                                                <input type="file" onChange={onchange} className="form-control" id="image" required/>
                                             </div>
                                             <div className="form-group">
                                                 <input type="text" placeholder="Enter Price" className="form-control" id="price" required/>
@@ -450,7 +485,7 @@ function SuperAdminDashboard () {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+                                            <button type="button" onClick={addAds} class="btn btn-primary" data-dismiss="modal">Add</button>
                                         </div>
                                         </div>
                                     </div>
