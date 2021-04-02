@@ -11,6 +11,7 @@ function AdminDashboard () {
     const dt = JSON.parse(data)
     const [buyers, setBuyers] = useState([])
     const [delivery, setDelivery] = useState([])
+    const [products, setProducts] = useState([])
 
     // clear localStorage : 
     function clearSess () {
@@ -38,6 +39,10 @@ function AdminDashboard () {
         })
     }
 
+    function renderProductData() {
+        fetch("")
+    }
+
     useEffect(() => {
         if(token){
             fetchBuyers()
@@ -45,7 +50,7 @@ function AdminDashboard () {
         } else {
             history.push("/AdminLogin")
         }
-    })
+    }, [])
 
     return (
         <body className="home">
@@ -193,6 +198,22 @@ function AdminDashboard () {
                             <div className="panel-body">
                                 <h3 className="thin">Products Tables :</h3>
                                 <hr />
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>Name</td>
+                                            <td>Type</td>
+                                            <td>Price</td>
+                                            <td>Image</td>
+                                            <td>Description</td>
+                                            <td>Actions</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
