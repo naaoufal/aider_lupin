@@ -70,6 +70,7 @@ function AdminDashboard () {
         })
     }
 
+    // show products
     function renderProductData() {
         fetch("http://localhost:3001/api/products/all").then(res => {
             return res.json()
@@ -78,12 +79,18 @@ function AdminDashboard () {
         })
     }
 
+    // delete product
     function deleteProduct (id) {
         fetch(`http://localhost:3001/api/products/delete/${id}`, {
             method : 'DELETE'
         }).then(res => {
             renderProductData()
         })
+    }
+
+    // edit delivery
+    function fetchDeliveryId (id) {
+        console.log(id)
     }
 
     useEffect(() => {
@@ -193,7 +200,7 @@ function AdminDashboard () {
                                                 <td>{i.email}</td>
                                                 <td>{i.phone}</td>
                                                 <td>{i.stat}</td>
-                                                <td><button className="btn btn-warning">Delete</button> <button className="btn btn-info">Edit</button></td>
+                                                <td><button className="btn btn-warning">Delete</button> <button onClick={() => fetchDeliveryId(i._id)} data-toggle="modal" data-target="#exampleEdit" className="btn btn-info">Edit</button></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -207,7 +214,7 @@ function AdminDashboard () {
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Add New Administrator</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Add New Delivery</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             </button>
                                         </div>
@@ -228,6 +235,36 @@ function AdminDashboard () {
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" data-dismiss="modal" onClick={addDelivery} class="btn btn-primary">Add</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* edit a delivery */}
+                                <div class="modal fade" id="exampleEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Delivery</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter admin full name" className="form-control" id="full" required/>
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="email" placeholder="Enter admin email" className="form-control" id="email" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" placeholder="Enter admin phone" className="form-control" id="phone" required />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="text" className="form-control" placeholder="Enter the status of delivery man" id="stat" required />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" data-dismiss="modal" onClick={editDelivery} class="btn btn-primary">Edit</button>
                                         </div>
                                         </div>
                                     </div>
