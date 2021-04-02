@@ -65,6 +65,8 @@ function SuperAdminDashboard () {
         formData.append('price', price)
         formData.append('desc', desc)
 
+        //console.log(image, price, desc)
+
         fetch("http://localhost:3001/api/ads/add", {
             method : 'POST',
             headers : {
@@ -74,35 +76,15 @@ function SuperAdminDashboard () {
         }).then(res => {
             return res.json()
         }).then(data => {
-            if(data) {
-                alert("Ads Added Successfully")
-                renderAdsData()
-            } else {
-                alert("Error")
-            }
+            console.log(data)
+            // if(data) {
+            //     alert("Ads Added Successfully")
+            //     renderAdsData()
+            // } else {
+            //     alert("Error")
+            // }
         })
     }
-
-    useEffect(() => {
-
-        renderAdsData()
-
-        if (token) {
-            
-            // render sellers data:
-            fetch("http://localhost:3001/api/users/allSellers").then(res => {
-                return res.json()
-            }).then(data => {
-                setSellers(data)
-            })
-
-            renderAdminData()
-            renderTypeData()
-
-        } else {
-            history.push("/SuperAdminLogin")
-        }
-    }, [])
 
     // add new admin:
     function addNewAdmin () {
@@ -228,6 +210,27 @@ function SuperAdminDashboard () {
             window.location.reload()
         })
     }
+
+    useEffect(() => {
+
+        renderAdsData()
+
+        if (token) {
+            
+            // render sellers data:
+            fetch("http://localhost:3001/api/users/allSellers").then(res => {
+                return res.json()
+            }).then(data => {
+                setSellers(data)
+            })
+
+            renderAdminData()
+            renderTypeData()
+
+        } else {
+            history.push("/SuperAdminLogin")
+        }
+    }, [])
 
     return (
         <body className="home">
@@ -454,7 +457,7 @@ function SuperAdminDashboard () {
                                                 <td><img src={"images/"+i.image} /></td>
                                                 <td>{i.price}</td>
                                                 <td>{i.desc}</td>
-                                                <td><button type="button" data-toggle="modal" data-target="#exampleEdit1" className="btn btn-info">Edit</button> <button className="btn btn-warning">Delete</button></td>
+                                                <td><button className="btn btn-warning">Delete</button></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -485,27 +488,6 @@ function SuperAdminDashboard () {
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="button" onClick={addAds} class="btn btn-primary" data-dismiss="modal">Add</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* modal to edit a type */}
-                                <div class="modal fade" id="exampleEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Edit Type</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div className="form-group">
-                                                <input type="text" placeholder="Enter Type Name" className="form-control" id="nameType" required/>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" onClick={editType} class="btn btn-primary">Edit</button>
                                         </div>
                                         </div>
                                     </div>

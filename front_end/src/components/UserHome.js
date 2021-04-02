@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import '../user.css'
+import { use } from "../../../back_end/routes/superAdmins"
+import { set } from "mongoose"
 
 function UserHome () {
 
@@ -9,6 +11,7 @@ function UserHome () {
     const data = localStorage.getItem('buyerInfo')
     const dt = JSON.parse(data)
     const [products, setProducts] = useState([])
+    const [ads, setAds] = useState([])
 
     function clearStorage() {
         localStorage.clear()
@@ -25,6 +28,14 @@ function UserHome () {
                 userType : "user",
                 numberOfSell : 0
             })
+        })
+    }
+
+    function renderAds () {
+        fetch("http://localhost:3001/api/ads/all").then(res => {
+            return res.json()
+        }).then(data => {
+            setAds(data)
         })
     }
 
@@ -61,7 +72,9 @@ function UserHome () {
             
 
             <header class="page-header">
-                <img className="page-title" src="" />
+                {ads.map((i) => (
+                    <img className="page-title" src={i.image} />
+                ))}
             </header>
 
             {/* <div className="jumbotron top-space">
