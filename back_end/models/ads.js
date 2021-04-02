@@ -11,7 +11,7 @@ const adsSchema = new mongoose.Schema({
         //required : true,
     },
     desc : {
-        type : Number,
+        type : String,
         //required : true
     }
 

@@ -45,7 +45,6 @@ function SuperAdminDashboard () {
         fetch("http://localhost:3001/api/ads/all").then(res => {
             return res.json()
         }).then(data => {
-            console.log(data)
             setAds(data)
         })
     }
