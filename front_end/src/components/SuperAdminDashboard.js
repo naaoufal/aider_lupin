@@ -67,22 +67,22 @@ function SuperAdminDashboard () {
 
         //console.log(image, price, desc)
 
-        fetch("http://localhost:3001/api/ads/add", {
+        fetch("http://localhost:3001/api/ads/addOne", {
             method : 'POST',
-            headers : {
+            header : {
                 'Content-Type' : 'multipart/form-data'
             },
             body : formData
         }).then(res => {
             return res.json()
         }).then(data => {
-            console.log(data)
-            // if(data) {
-            //     alert("Ads Added Successfully")
-            //     renderAdsData()
-            // } else {
-            //     alert("Error")
-            // }
+            //console.log(data, image, price, desc)
+            if(data) {
+                alert("Ads Added Successfully")
+                renderAdsData()
+            } else {
+                alert("Error")
+            }
         })
     }
 
@@ -294,10 +294,10 @@ function SuperAdminDashboard () {
                                     </tbody>
                                 </table>
                                 <hr />
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleAdd">
                                 Add New Administrator
                                 </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">

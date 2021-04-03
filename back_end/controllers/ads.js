@@ -11,6 +11,17 @@ async function all (req, res) {
     }
 }
 
+// random ads
+async function randomOne (req, res) {
+    try {
+        const ads = await Ads.aggregate([{ $sample: { size: 1 } }])
+        res.json(ads)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
+
 async function add (req, res) {
     const ads = new Ads({
         image : req.file.filename,
@@ -34,5 +45,6 @@ async function deleteOne (req, res) {
 module.exports = {
     all,
     add,
-    deleteOne
+    deleteOne,
+    randomOne
 }

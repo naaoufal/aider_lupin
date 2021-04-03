@@ -30,7 +30,7 @@ function UserHome () {
     }
 
     function renderAds () {
-        fetch("http://localhost:3001/api/ads/all").then(res => {
+        fetch("http://localhost:3001/api/ads/randomAds").then(res => {
             return res.json()
         }).then(data => {
             setAds(data)
