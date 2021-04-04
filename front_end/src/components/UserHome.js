@@ -10,6 +10,7 @@ function UserHome () {
     const dt = JSON.parse(data)
     const [products, setProducts] = useState([])
     const [ads, setAds] = useState([])
+    const [currency, setCurrency] = useState([])
 
     function clearStorage() {
         localStorage.clear()
@@ -45,10 +46,24 @@ function UserHome () {
         })
     }
 
+    // currency api
+    function renderCurrency () {
+        fetch("http://api.exchangeratesapi.io/v1/latest?access_key=c38142af852578c0d6b5ba020eb82a79").then(res => {
+            return res.json()
+        }).then(data => {
+            setCurrency(data)
+        })
+    }
+
+    function currencyCalcul () {
+
+    }
+
     useEffect(() => {
         resetStatAndPoints()
         renderProducts()
         renderAds()
+        renderCurrency()
     }, [])
 
     return (
@@ -100,7 +115,7 @@ function UserHome () {
                                         </div>
                                         <div className="panel panel-body">
                                             <img src={"images/"+i.image} />
-                                            <p>{i.price} $</p>
+                                            <p><input value={i.price} readonly="readonly" /> €</p>
                                             <p>{i.desc}</p>
                                             <button className="btn btn-primary">Buy</button>
                                         </div>
