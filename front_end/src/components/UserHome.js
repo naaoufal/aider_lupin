@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import Paypal from './paypal/paypal'
 import '../user.css'
 
 function UserHome () {
@@ -11,6 +12,7 @@ function UserHome () {
     const [products, setProducts] = useState([])
     const [ads, setAds] = useState([])
     const [currency, setCurrency] = useState([])
+    const [checkout, setCheckOut] = useState(false)
 
     function clearStorage() {
         localStorage.clear()
@@ -55,8 +57,9 @@ function UserHome () {
         })
     }
 
-    function currencyCalcul () {
-
+    function Checkout (id) {
+        //console.log(id)
+        fetch()
     }
 
     useEffect(() => {
@@ -117,7 +120,12 @@ function UserHome () {
                                             <img src={"images/"+i.image} />
                                             <p><input value={i.price} readonly="readonly" /> €</p>
                                             <p>{i.desc}</p>
-                                            <button className="btn btn-primary">Buy</button>
+                                            {/* {checkout ? (
+                                                // run test
+                                                <Paypal />
+                                            ) : ( */}
+                                            <button onClick={() => Checkout(i._id)} className="btn btn-primary">Buy</button>
+                                            {/* )} */}
                                         </div>
                                     </div>
                                 </div>

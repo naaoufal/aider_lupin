@@ -12,6 +12,7 @@ import UserHome from './components/UserHome';
 import UserDashboard from './components/UserDashboard';
 import SellerReset from './components/SellerReset';
 import AccountSuspend from './components/AccountSusp';
+import Paypal from './components/paypal/paypal';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/SellerDashboard" exact component={UserDashboard} />
           <Route path="/SellerReset" exact component={SellerReset} />
           <Route path="/Suspended" exact component={AccountSuspend} />
+          <Route path="/payment" exact component={Paypal} />
         </Switch>
       </div>
     </Router>
