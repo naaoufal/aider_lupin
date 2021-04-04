@@ -8,8 +8,9 @@ function Paypal () {
     let history = useHistory()
     const paypal = useRef()
     const productInfo = JSON.parse(localStorage.getItem('productInfo'))
+    const buyerInfo = JSON.parse(localStorage.getItem('buyerInfo'))
 
-    //console.log(productInfo)
+    console.log(productInfo, buyerInfo)
 
     function backHome () {
         localStorage.removeItem('productInfo')
