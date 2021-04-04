@@ -23,6 +23,19 @@ async function allBySeller (req, res) {
     }
 }
 
+// search for product with id
+async function oneProduct (req, res, next) {
+    let product
+    try {
+        product = await Products.findById(req.params.id);
+        res.json(product)
+    } catch (error) {
+        return res.json({message : error.message})
+    }
+    res.product = product
+    next()
+}
+
 async function add (req, res) {
     const product = new Products({
         name : req.body.name,
@@ -49,6 +62,7 @@ async function deleteOne (req, res) {
 module.exports = {
     all,
     allBySeller,
+    oneProduct,
     add,
     deleteOne
 }

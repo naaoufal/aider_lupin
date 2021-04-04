@@ -58,8 +58,12 @@ function UserHome () {
     }
 
     function Checkout (id) {
-        //console.log(id)
-        fetch()
+        fetch(`http://localhost:3001/api/products/oneProduct/${id}`).then(res => {
+            return res.json()
+        }).then(data => {
+            localStorage.setItem('productInfo', JSON.stringify(data))
+            history.push("/payment")
+        })
     }
 
     useEffect(() => {
