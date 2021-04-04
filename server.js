@@ -22,6 +22,7 @@ app.use("/api/users", require("./back_end/routes/users.js"))
 app.use("/api/delivery", require("./back_end/routes/delivery.js"))
 app.use("/api/pricing", require("./back_end/routes/pricing.js"))
 app.use("/api/products", require("./back_end/routes/products.js"))
+app.use("/api/commands", require("./back_end/routes/commands.js"))
 
 
 // start the server
