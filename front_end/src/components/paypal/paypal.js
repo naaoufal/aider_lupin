@@ -63,8 +63,8 @@ function Paypal () {
                 addCommand()
                 history.push("/Success")
               } else {
-                //   they is an Error in payment
-                  console.log("Eroor")
+                // they is an Error in payment
+                console.log("Eroor")
               }
             },
             onError: (err) => {
