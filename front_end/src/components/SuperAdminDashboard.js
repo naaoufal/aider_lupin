@@ -494,7 +494,7 @@ function SuperAdminDashboard () {
                                             {/* <td scope="10px">ID</td> */}
                                             <td>Product Name</td>
                                             <td>Product ID</td>
-                                            <td>Buyer Email</td>
+                                            <td>Buyer ID</td>
                                             <td>Seller ID</td>
                                             <td>Price</td>
                                             {/* <td>Command Date</td> */}
@@ -507,7 +507,7 @@ function SuperAdminDashboard () {
                                                 {/* <td>{i._id}</td> */}
                                                 <td>{i.productName}</td>
                                                 <td>{i.productId}</td>
-                                                <td>{i.buyerEmail}</td>
+                                                <td>{i.buyerId}</td>
                                                 <td>{i.idSeller}</td>
                                                 <td>{i.price}</td>
                                                 {/* <td>{i.date}</td> */}
