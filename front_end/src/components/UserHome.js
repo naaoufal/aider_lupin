@@ -112,7 +112,7 @@ function UserHome () {
                 <div className="col-md text-center">
                     <div className="panel panel-default">
                         <div className="panel-body">
-                            <h3 class="thin">All Products</h3>
+                            <h3 class="thin">All Products</h3><div id="google_translate_element"></div>
                             <hr />
                             {products.map((i) => (
                                 <div className="col-sm-4">
