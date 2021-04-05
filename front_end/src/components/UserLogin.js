@@ -8,6 +8,7 @@ function UserLogin () {
     const [em, setEmail] = useState([])
     const [ps, setPassword] = useState([])
     const [rl, setRole] = useState([])
+    var total = 0
 
     function submitBuyer () {
         fetch("http://localhost:3001/api/users/allUser").then(res => {
@@ -18,6 +19,43 @@ function UserLogin () {
                 if(i.email == em && i.password == ps && i.role == rl) {
                     //console.log(i)
                     if(rl == "seller") {
+                        fetch(`http://localhost:3001/api/commands/allBySeller/${i._id}`).then(res => {
+                            return res.json()
+                        }).then(data => {
+                            //console.log(data.length)
+                            if(data.length >= 3) {
+                                if(data.length >= 5){
+                                    //console.log("nta expert")
+                                    fetch(`http://localhost:3001/api/users/edit/${i._id}`, {
+                                        method : 'PATCH',
+                                        headers : {
+                                            'Content-Type' : 'application/json'
+                                        },
+                                        body : JSON.stringify({
+                                            userType : "Expert"
+                                        })
+                                    }).then(res => {
+                                        return res.json()
+                                    })
+                                } else {
+                                    //console.log("nta pro")
+                                    fetch(`http://localhost:3001/api/users/edit/${i._id}`, {
+                                        method : 'PATCH',
+                                        headers : {
+                                            'Content-Type' : 'application/json'
+                                        },
+                                        body : JSON.stringify({
+                                            userType : "Expert"
+                                        })
+                                    }).then(res => {
+                                        return res.json()
+                                    })
+                                }
+                            } else {
+                                console.log("nta starter")
+                            }
+                        })
+
                         //console.log(i)
                         if(i.is_reseted == false) {
                             localStorage.setItem('resetInfo', JSON.stringify(i))

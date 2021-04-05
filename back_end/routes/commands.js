@@ -10,6 +10,8 @@ router.post("/add", commandCon.addOne)
 
 router.get("/all", commandCon.all)
 
+router.get("/allBySeller/:idSeller", commandCon.allByCommand)
+
 router.patch("/edit/:id", commandCon.edit)
 
 router.delete("/delete/:id", commandCon.deleteOne)

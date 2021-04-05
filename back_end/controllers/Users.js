@@ -1,5 +1,6 @@
 require('dotenv').config()
 const Users = require('../models/users')
+const Commands = require('../models/commands')
 
 
 async function allBuyers (req, res) {

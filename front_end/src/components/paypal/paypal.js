@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router-dom"
-import { info } from 'winston'
+
 
 function Paypal () {
 
@@ -15,6 +15,28 @@ function Paypal () {
     function backHome () {
         localStorage.removeItem('productInfo')
         history.push("/Home")
+    }
+
+    function addCommand () {
+        fetch("http://localhost:3001/api/commands/add", {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                productName : productInfo.name,
+                productId : productInfo._id,
+                buyerId : buyerInfo._id,
+                idSeller : productInfo.idSeller,
+                price : productInfo.price,
+                date : Date(),
+                is_validate : false
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            console.log(data)
+        })
     }
 
     useEffect(() => {
@@ -37,7 +59,9 @@ function Paypal () {
               const order = await actions.order.capture();
               //console.log(order);
               if(order){
-                //   post a new command if the payment is ok
+                // post a new command if the payment is ok
+                addCommand()
+                history.push("/Success")
               } else {
                 //   they is an Error in payment
                   console.log("Eroor")

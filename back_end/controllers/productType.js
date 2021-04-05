@@ -39,8 +39,16 @@ async function edit (req, res) {
     })
 }
 
+async function deleteOne (req, res) {
+    Type.findByIdAndDelete(req.params.id).then( () => {
+        res.json()
+    })
+}
+
+
 module.exports = {
     all,
     createOne,
-    edit
+    edit,
+    deleteOne
 }

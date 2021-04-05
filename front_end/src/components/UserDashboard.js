@@ -91,6 +91,38 @@ function UserDashboard () {
         })
     }
 
+    function proPack () {
+        fetch(`http://localhost:3001/api/users/edit/${dt._id}`, {
+            method : 'PATCH',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                userType : "Professional"
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            alert("You Upgaded to Professional Pack \n Plz Reconnect to Render Your new Pack")
+        })
+    }
+
+    function expPack () {
+        fetch(`http://localhost:3001/api/users/edit/${dt._id}`, {
+            method : 'PATCH',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                userType : "Expert"
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            alert("You Upgaded to Expert Pack \n Plz Reconnect to Render Your new Pack")
+        })
+    }
+
     useEffect(() => {
 
         renderProductData()
@@ -224,7 +256,7 @@ function UserDashboard () {
                                         <div className="panel panel-body">
                                             <p>This is a Pro Pack</p>
                                             <input type="hidden" id="score" value="3000" />
-                                            <button className="btn btn-primary">Buy</button>
+                                            <button onClick={proPack} className="btn btn-primary">Buy</button>
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +268,7 @@ function UserDashboard () {
                                         <div className="panel panel-body">
                                             <p>This is a Expert Pack</p>
                                             <input type="hidden" id="score" value="5000" />
-                                            <button className="btn btn-primary">Buy</button>
+                                            <button onClick={expPack} className="btn btn-primary">Buy</button>
                                         </div>
                                     </div>
                                 </div>

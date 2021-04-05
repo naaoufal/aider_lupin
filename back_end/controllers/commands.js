@@ -10,10 +10,24 @@ async function all (req, res) {
     }
 }
 
+
+async function allByCommand (req, res) {
+    try {
+        const commands = await Commands.find({
+            idSeller : req.params.idSeller
+        })
+        res.json(commands)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
+
 async function addOne (req, res) {
     const command = new Commands({
         productName : req.body.productName,
-        buyerEmail : req.body.buyerEmail,
+        productId : req.body.productId,
+        buyerId : req.body.buyerId,
         idSeller : req.body.idSeller,
         price : req.body.price,
         date : req.body.date,
@@ -53,5 +67,6 @@ module.exports = {
     all,
     addOne,
     edit,
-    deleteOne
+    deleteOne,
+    allByCommand
 }

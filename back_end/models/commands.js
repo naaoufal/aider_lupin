@@ -6,7 +6,11 @@ const commandSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    buyerEmail : {
+    productId : {
+        type : String,
+        required : true,
+    },
+    buyerId : {
         type : String,
         required : true,
     },

@@ -71,6 +71,10 @@ GET http://localhost:3001/api/productsType/all
 
 ###
 
+DELETE http://localhost:3001/api/productsTpe/delete/60577f06e84cb35eb02e4c80
+
+###
+
 GET http://localhost:3001/api/users/allBuyers
 
 ###
@@ -136,3 +140,25 @@ GET http://localhost:3001/api/products/all
 
 ###
 GET http://localhost:3001/api/ads/all 
+
+###
+
+GET http://localhost:3001/api/commands/all
+
+###
+
+POST http://localhost:3001/api/commands/add
+Content-Type: application/json
+
+{
+    "productName" : "productName",
+    "buyerEmail" : "buyerEmail",
+    "idSeller" : "idSeller",
+    "price" : 12000,
+    "date" : "Sun Apr 04 2021 18:37:22 GMT+0100 (UTC+01:00)",
+    "is_validate" : false
+}
+
+###
+
+GET http://localhost:3001/api/commands/allBySeller/6064507e6de79722e8c2acf8

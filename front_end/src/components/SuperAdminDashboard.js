@@ -11,6 +11,7 @@ function SuperAdminDashboard () {
     const [admin, setAdmins] = useState([])
     const [productType, setType] = useState([])
     const [ads, setAds] = useState([])
+    const [commands, setCommands] = useState([])
     const token = localStorage.getItem('tokenaccess')
     const data = localStorage.getItem('adminInfo')
     const dt = JSON.parse(data)
@@ -163,6 +164,17 @@ function SuperAdminDashboard () {
         })
     }
 
+    function deleteType (id) {
+        fetch(`http://localhost:3001/api/productsType/delete/${id}`, {
+            method : 'DELETE',
+            headers : {
+                'Authorization' : 'Bearer ' + token
+            }
+        }).then(res => {
+            renderTypeData()
+        })
+    }
+
     // edit product type:
     function editType (id) {
         const nm = document.querySelector('#nameType').value
@@ -211,9 +223,43 @@ function SuperAdminDashboard () {
         })
     }
 
+    // commands render
+    function renderCommands () {
+        fetch("http://localhost:3001/api/commands/all").then(res => {
+            return res.json()
+        }).then(data => {
+            setCommands(data)
+        })
+    }
+
+    // confirm command
+    function confirmCommand (id) {
+        fetch(`http://localhost:3001/api/commands/edit/${id}`, {
+            method : 'PATCH',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify({
+                is_validate : true
+            })
+        }).then(res => {
+            renderCommands()
+        })
+    }
+
+    // delete commend
+    function deleteCommand (id) {
+        fetch(`http://localhost:3001/api/commands/delete/${id}`, {
+            method : 'DELETE'
+        }).then(res => {
+            renderCommands()
+        })
+    }
+
     useEffect(() => {
 
         renderAdsData()
+        renderCommands()
 
         if (token) {
             
@@ -383,7 +429,7 @@ function SuperAdminDashboard () {
                                             <tr>
                                                 <td>{i._id}</td>
                                                 <td>{i.name}</td>
-                                                <td><button type="button" data-toggle="modal" data-target="#exampleEdit" onClick={() => editType(i._id)} className="btn btn-info">Edit</button> <button className="btn btn-warning">Delete</button></td>
+                                                <td><button type="button" data-toggle="modal" data-target="#exampleEdit" onClick={() => editType(i._id)} className="btn btn-info">Edit</button> <button onClick={() => deleteType(i._id)} className="btn btn-warning">Delete</button></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -436,6 +482,52 @@ function SuperAdminDashboard () {
                             </div>
                         </div>
                     </div>
+                    {/* commands table */}
+                    <div className="col-md text-center">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                                <h3 class="thin">Commands Table :</h3>
+                                <hr />
+                                <table className="table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            {/* <td scope="10px">ID</td> */}
+                                            <td>Product Name</td>
+                                            <td>Product ID</td>
+                                            <td>Buyer Email</td>
+                                            <td>Seller ID</td>
+                                            <td>Price</td>
+                                            {/* <td>Command Date</td> */}
+                                            {/* <td>Confirmed</td> */}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {commands.map((i) => (
+                                            <tr>
+                                                {/* <td>{i._id}</td> */}
+                                                <td>{i.productName}</td>
+                                                <td>{i.productId}</td>
+                                                <td>{i.buyerEmail}</td>
+                                                <td>{i.idSeller}</td>
+                                                <td>{i.price}</td>
+                                                {/* <td>{i.date}</td> */}
+                                                {/* <td>{JSON.stringify(i.is_validate)}</td> */}
+                                                <td>
+                                                    {i.is_validate == false ?
+                                                    <button onClick={() => confirmCommand(i._id)} className="btn btn-info">Confirm</button>
+                                                    :
+                                                    <button onClick={() => confirmCommand(i._id)} className="btn btn-danger">Confirmed</button>
+                                                    }
+                                                    <button onClick={() => deleteCommand(i._id)} className="btn btn-warning">Delete</button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {/* end of command table */}
                     <div className="col-md text-center">
                         <div className="panel panel-default">
                             <div className="panel-body">
