@@ -83,6 +83,7 @@ function UserHome () {
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
+                        <li><div id="google_translate_element" className=""></div></li>
                         <li class="active"><Link onClick={clearStorage} className="btn">Sign out</Link></li>
                     </ul>
                 </div>
@@ -112,7 +113,7 @@ function UserHome () {
                 <div className="col-md text-center">
                     <div className="panel panel-default">
                         <div className="panel-body">
-                            <h3 class="thin">All Products</h3><div id="google_translate_element"></div>
+                            <h3 class="thin">All Products</h3>
                             <hr />
                             {products.map((i) => (
                                 <div className="col-sm-4">
