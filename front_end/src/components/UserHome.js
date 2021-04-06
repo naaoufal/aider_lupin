@@ -140,6 +140,18 @@ function UserHome () {
                     </div>
                 </div>
             </div>
+            <div className="row">
+                <div className="col-md text-center">
+                    <div className="panel panel-default">
+                        <div className="panel-body">
+                            <h3 class="thin">Fire Sale</h3>
+                            <hr />
+                            <Link className="btn btn-primary">Start the Fire Sale</Link>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
     )

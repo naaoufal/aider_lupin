@@ -17,20 +17,45 @@ function UserLogin () {
             data.map(i => {
                 //console.log(i)
                 if(i.email == em && i.password == ps && i.role == rl) {
-                    console.log(i)
+                    console.log(i.numberOfSell)
                     if(rl == "seller") {
                         //console.log(i)
                         if(i.is_reseted == false) {
-                            // localStorage.setItem('resetInfo', JSON.stringify(i))
-                            // history.push("/SellerReset")
+                            localStorage.setItem('resetInfo', JSON.stringify(i))
+                            history.push("/SellerReset")
                         } else {
-                            // localStorage.setItem('sellerInfo', JSON.stringify(i))
-                            // history.push("/SellerDashboard")
+                            if(i.numberOfSell >= 5000) {
+                                if(i.numberOfSell >= 10000) {
+                                    fetch(`http://localhost:3001/api/users/edit/${i._id}`, {
+                                        method : 'PATCH',
+                                        headers : {
+                                            'Content-Type' : 'application/json'
+                                        },
+                                        body : JSON.stringify({
+                                            userType : "Expert"
+                                        })
+                                    })
+                                } else {
+                                    fetch(`http://localhost:3001/api/users/edit/${i._id}`, {
+                                        method : 'PATCH',
+                                        headers : {
+                                            'Content-Type' : 'application/json'
+                                        },
+                                        body : JSON.stringify({
+                                            userType : "Professional"
+                                        })
+                                    })
+                                }
+                            } else {
+                                console.log("Starter Pack")
+                            }
+                            localStorage.setItem('sellerInfo', JSON.stringify(i))
+                            history.push("/SellerDashboard")
                         }
                     } else {
                         //console.log(i)
-                        // localStorage.setItem('buyerInfo', JSON.stringify(i))
-                        // history.push("/Home")
+                        localStorage.setItem('buyerInfo', JSON.stringify(i))
+                        history.push("/Home")
                     }
                 }
             })
