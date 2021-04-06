@@ -18,25 +18,36 @@ function Paypal () {
     }
 
     function addCommand () {
-        fetch("http://localhost:3001/api/commands/add", {
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify({
-                productName : productInfo.name,
-                productId : productInfo._id,
-                buyerId : buyerInfo._id,
-                idSeller : productInfo.idSeller,
-                price : productInfo.price,
-                date : Date(),
-                is_validate : false
-            })
-        }).then(res => {
-            return res.json()
-        }).then(data => {
-            console.log(data)
+      fetch("http://localhost:3001/api/commands/add", {
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({
+          productName : productInfo.name,
+          productId : productInfo._id,
+          buyerId : buyerInfo._id,
+          idSeller : productInfo.idSeller,
+          price : productInfo.price,
+          date : Date(),
+          is_validate : false
         })
+      }).then(res => {
+        return res.json()
+      }).then(data => {
+        console.log(data)
+      })
+
+      // edit on seller to add a sum of product price
+      fetch(`http://localhost:3001/api/user/edit/${productInfo.idSeller}`, {
+        method : 'PATCh',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({
+          
+        })
+      })
     }
 
     useEffect(() => {
