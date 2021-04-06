@@ -83,6 +83,10 @@ GET http://localhost:3001/api/users/allSellers
 
 ###
 
+GET http://localhost:3001/api/users/seller/
+
+###
+
 POST http://localhost:3001/api/users/add
 Content-Type: application/json
 

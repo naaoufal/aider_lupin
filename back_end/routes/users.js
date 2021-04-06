@@ -15,5 +15,7 @@ router.post("/add", userCon.add)
 
 router.patch("/edit/:id", userCon.edit)
 
+// router.get("/seller/:id", userCon.oneUser)
+
 
 module.exports = router

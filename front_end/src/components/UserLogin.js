@@ -17,57 +17,20 @@ function UserLogin () {
             data.map(i => {
                 //console.log(i)
                 if(i.email == em && i.password == ps && i.role == rl) {
-                    //console.log(i)
+                    console.log(i)
                     if(rl == "seller") {
-                        fetch(`http://localhost:3001/api/commands/allBySeller/${i._id}`).then(res => {
-                            return res.json()
-                        }).then(data => {
-                            //console.log(data.length)
-                            if(data.length >= 3) {
-                                if(data.length >= 5){
-                                    //console.log("nta expert")
-                                    fetch(`http://localhost:3001/api/users/edit/${i._id}`, {
-                                        method : 'PATCH',
-                                        headers : {
-                                            'Content-Type' : 'application/json'
-                                        },
-                                        body : JSON.stringify({
-                                            userType : "Expert"
-                                        })
-                                    }).then(res => {
-                                        return res.json()
-                                    })
-                                } else {
-                                    //console.log("nta pro")
-                                    fetch(`http://localhost:3001/api/users/edit/${i._id}`, {
-                                        method : 'PATCH',
-                                        headers : {
-                                            'Content-Type' : 'application/json'
-                                        },
-                                        body : JSON.stringify({
-                                            userType : "Expert"
-                                        })
-                                    }).then(res => {
-                                        return res.json()
-                                    })
-                                }
-                            } else {
-                                console.log("nta starter")
-                            }
-                        })
-
                         //console.log(i)
                         if(i.is_reseted == false) {
-                            localStorage.setItem('resetInfo', JSON.stringify(i))
-                            history.push("/SellerReset")
+                            // localStorage.setItem('resetInfo', JSON.stringify(i))
+                            // history.push("/SellerReset")
                         } else {
-                            localStorage.setItem('sellerInfo', JSON.stringify(i))
-                            history.push("/SellerDashboard")
+                            // localStorage.setItem('sellerInfo', JSON.stringify(i))
+                            // history.push("/SellerDashboard")
                         }
                     } else {
                         //console.log(i)
-                        localStorage.setItem('buyerInfo', JSON.stringify(i))
-                        history.push("/Home")
+                        // localStorage.setItem('buyerInfo', JSON.stringify(i))
+                        // history.push("/Home")
                     }
                 }
             })

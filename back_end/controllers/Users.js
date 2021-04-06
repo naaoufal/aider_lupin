@@ -34,6 +34,17 @@ async function allUser (req, res) {
     }
 }
 
+async function oneUser (req, res) {
+    try {
+        const users = await Users.find({
+            id : id
+        })
+        res.json(users)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
 async function add (req, res) {
     const user = new Users({
         fullname : req.body.fullname,
@@ -82,5 +93,6 @@ module.exports = {
     allUser,
     edit,
     add,
-    deleteUser
+    deleteUser,
+    oneUser
 }

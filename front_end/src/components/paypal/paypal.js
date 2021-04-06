@@ -10,7 +10,7 @@ function Paypal () {
     const productInfo = JSON.parse(localStorage.getItem('productInfo'))
     const buyerInfo = JSON.parse(localStorage.getItem('buyerInfo'))
 
-    console.log(productInfo, buyerInfo)
+    //console.log(productInfo, buyerInfo)
 
     function backHome () {
         localStorage.removeItem('productInfo')
@@ -34,19 +34,19 @@ function Paypal () {
         })
       }).then(res => {
         return res.json()
-      }).then(data => {
-        console.log(data)
       })
 
       // edit on seller to add a sum of product price
-      fetch(`http://localhost:3001/api/user/edit/${productInfo.idSeller}`, {
-        method : 'PATCh',
+      fetch(`http://localhost:3001/api/users/edit/${productInfo.idSeller}`, {
+        method : 'PATCH',
         headers : {
           'Content-Type' : 'application/json'
         },
         body : JSON.stringify({
-          
+          numberOfSell : productInfo.price
         })
+      }).then(res => {
+        return res.json()
       })
     }
 
