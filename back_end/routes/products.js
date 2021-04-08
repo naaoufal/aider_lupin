@@ -24,6 +24,8 @@ router.get("/all", productCon.all)
 
 router.get("/allBySeller/:idSeller", productCon.allBySeller)
 
+router.get("/randomproduct", productCon.randomOne)
+
 router.get("/oneProduct/:id", productCon.oneProduct)
 
 // router.patch("/edit/:id", upload.single('image'), productCon.edit)

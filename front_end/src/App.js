@@ -14,6 +14,7 @@ import SellerReset from './components/SellerReset';
 import AccountSuspend from './components/AccountSusp';
 import Paypal from './components/paypal/paypal';
 import Success from './components/paypal/success';
+import FireSale from './components/fireSale/firesale';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/Suspended" exact component={AccountSuspend} />
           <Route path="/payment" exact component={Paypal} />
           <Route path="/Success" exact component={Success} />
+          <Route path="/FireSale" exact component={FireSale} />
         </Switch>
       </div>
     </Router>

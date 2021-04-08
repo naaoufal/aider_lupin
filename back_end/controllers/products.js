@@ -23,6 +23,16 @@ async function allBySeller (req, res) {
     }
 }
 
+// show random products for fire sale
+async function randomOne (req, res) {
+    try {
+        const product = await Products.aggregate([{ $sample: { size: 1 } }])
+        res.json(product)
+    } catch (error) {
+        res.json({message : error.message})
+    }
+}
+
 // search for product with id
 async function oneProduct (req, res, next) {
     let product
@@ -64,5 +74,6 @@ module.exports = {
     allBySeller,
     oneProduct,
     add,
-    deleteOne
+    deleteOne,
+    randomOne
 }
