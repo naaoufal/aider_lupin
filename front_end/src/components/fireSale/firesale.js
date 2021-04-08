@@ -17,14 +17,15 @@ firebase.initializeApp({
     appId: "1:1059712891649:web:44a003e50c7b47fd9ef900"
 })
 
-const auth = firebase.auth()
-const firestore = firebase.firestore()
+// const auth = firebase.auth()
+// const firestore = firebase.firestore()
 
 function FireSale () {
 
     let history = useHistory()
 
     const [products, setProducts] = useState([])
+    const [renderMessage, setMessage] = useState([])
 
     function backHome () {
         localStorage.removeItem('productInfo')
@@ -37,6 +38,27 @@ function FireSale () {
             return res.json()
         }).then(data => {
             setProducts(data)
+        })
+    }
+
+    // send message
+    function sendMessage () {
+        var u = document.querySelector('#user').value
+        var m = document.querySelector('#msg').value
+
+        firebase.database().ref('chat').push({
+            user : u,
+            msg : m
+        })
+
+        m = ""
+
+        //var messages = document.querySelector('#chat')
+        firebase.database().ref('chat').on('value', (snap) => {
+            renderMessage = ""
+            snap.map((e) => {
+                setMessage(e.value)
+            })
         })
     }
 
@@ -56,7 +78,7 @@ function FireSale () {
                         <h1 className="page-title">Fire Sale</h1>
                     </header>
                     {products.map((i) => (
-                        <div className="col-md-6">
+                        <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                             <div className="panel panel-default">
                                 <div className="panel-body text-center">
                                     <h3 className="thin">{i.name}</h3>
@@ -71,6 +93,10 @@ function FireSale () {
                             </div>
                         </div>
                     ))}
+                </article>
+            </div>
+            <div className="row">
+                <article className="col-xs-12 maincontent">
                     <div className="col-md-6">
                         <div className="panel panel-default">
                             <div className="panel-body text-center">
@@ -78,9 +104,27 @@ function FireSale () {
                                     <h2>Chat Box</h2>
                                 </div>
                                 <div className="panel-body">
-                                    <input type="text" className="mb-2" />
-                                    <br />
-                                    <textarea ></textarea>
+                                    <div className="form-group">
+                                        <input id="user" className="form-control" type="text" />
+                                    </div>
+                                    <div className="form-group">
+                                        <textarea id="msg" className="form-control" cols="10" rows="10"></textarea>
+                                    </div>
+                                    <div className="form-group">
+                                        <button id="send" className="btn btn-success" onClick={sendMessage}>Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="panel panel-default">
+                            <div className="panel-body text-center">
+                                <div className="panel-heading">
+                                    <h2>Room Chat</h2>
+                                </div>
+                                <div className="panel-body" id="chat">
+                                    <p>{renderMessage}</p>
                                 </div>
                             </div>
                         </div>
