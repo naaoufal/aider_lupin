@@ -74,7 +74,14 @@ function FireSale () {
                     <div className="col-md-6">
                         <div className="panel panel-default">
                             <div className="panel-body text-center">
-                                
+                                <div className="panel-heading">
+                                    <h2>Chat Box</h2>
+                                </div>
+                                <div className="panel-body">
+                                    <input type="text" className="mb-2" />
+                                    <br />
+                                    <textarea ></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
