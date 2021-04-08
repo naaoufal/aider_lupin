@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import firebase from "firebase";
 import 'firebase/firestore'
 import 'firebase/auth'
 import { Link } from "react-router-dom"
@@ -8,14 +8,17 @@ import {useAuthState} from 'react-firebase-hooks/auth'
 import {useCollectionData} from 'react-firebase-hooks/firestore'
 import { useEffect, useState } from 'react'
 
-firebase.initializeApp({
-    apiKey: "AIzaSyAw0i4q9dkMlqYUYcHmQQ-99n99K9CT3V8",
-    authDomain: "firesale-65630.firebaseapp.com",
-    projectId: "firesale-65630",
-    storageBucket: "firesale-65630.appspot.com",
-    messagingSenderId: "1059712891649",
-    appId: "1:1059712891649:web:44a003e50c7b47fd9ef900"
-})
+var firebaseConfig = {
+    apiKey: "AIzaSyCc3n15L9EDjbFBEsf1QIEVWdAMpaQminI",
+    authDomain: "sale-f97b9.firebaseapp.com",
+    databaseURL: "https://sale-f97b9-default-rtdb.firebaseio.com",
+    projectId: "sale-f97b9",
+    storageBucket: "sale-f97b9.appspot.com",
+    messagingSenderId: "482757909401",
+    appId: "1:482757909401:web:fbc369c1b523f34eb21108"
+};
+  // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 // const auth = firebase.auth()
 // const firestore = firebase.firestore()
@@ -43,22 +46,25 @@ function FireSale () {
 
     // send message
     function sendMessage () {
-        var u = document.querySelector('#user').value
-        var m = document.querySelector('#msg').value
+        
+        const u = document.querySelector('#user').value
+        const m = document.querySelector('#msg').value
 
         firebase.database().ref('chat').push({
             user : u,
             msg : m
         })
 
-        m = ""
+        //m = ""
 
-        //var messages = document.querySelector('#chat')
+        
         firebase.database().ref('chat').on('value', (snap) => {
-            renderMessage = ""
-            snap.map((e) => {
-                setMessage(e.value)
-            })
+            console.log(snap)
+            //renderMessage = ""
+            // snap.map(e => {
+            //     const x = e.val()
+            //     setMessage(x)
+            // })
         })
     }
 
