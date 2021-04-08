@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 
 import {useAuthState} from 'react-firebase-hooks/auth'
 import {useCollectionData} from 'react-firebase-hooks/firestore'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 var firebaseConfig = {
     apiKey: "AIzaSyCc3n15L9EDjbFBEsf1QIEVWdAMpaQminI",
@@ -20,15 +20,15 @@ var firebaseConfig = {
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// const auth = firebase.auth()
-// const firestore = firebase.firestore()
+const auth = firebase.auth()
+const firestore = firebase.firestore()
 
 function FireSale () {
 
     let history = useHistory()
 
     const [products, setProducts] = useState([])
-    const [renderMessage, setMessage] = useState([])
+    const [message, setMessage] = useState([])
 
     function backHome () {
         localStorage.removeItem('productInfo')
@@ -44,6 +44,11 @@ function FireSale () {
         })
     }
 
+    function clearInputs () {
+        document.querySelector('#user').value = ""
+        document.querySelector('#msg').value = ""
+    }
+
     // send message
     function sendMessage () {
         
@@ -55,20 +60,23 @@ function FireSale () {
             msg : m
         })
 
-        //m = ""
+        clearInputs()
 
         
         firebase.database().ref('chat').on('value', (snap) => {
-            console.log(snap)
-            //renderMessage = ""
-            // snap.map(e => {
-            //     const x = e.val()
-            //     setMessage(x)
-            // })
+            //console.log(snap)
+            clearInputs()
+            snap.forEach((e) => {
+                //console.log(e.val())
+                const x = e.val()
+                setMessage(x)
+            })
         })
     }
 
+
     useEffect(() => {
+        console.log(message)
         // write some functions here !!!
         renderProductData()
     }, [])
@@ -92,9 +100,6 @@ function FireSale () {
                                     <p>{i.price}</p>
                                     <p>{i.desc}</p>
                                     <hr />
-                                    <div>
-                                        {/* <div ref={paypal}></div> */}
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +108,7 @@ function FireSale () {
             </div>
             <div className="row">
                 <article className="col-xs-12 maincontent">
-                    <div className="col-md-6">
+                    {/* <div className="col-md-6">
                         <div className="panel panel-default">
                             <div className="panel-body text-center">
                                 <div className="panel-heading">
@@ -122,15 +127,15 @@ function FireSale () {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="col-md-6">
                         <div className="panel panel-default">
-                            <div className="panel-body text-center">
+                            <div className="panel-body">
                                 <div className="panel-heading">
                                     <h2>Room Chat</h2>
                                 </div>
                                 <div className="panel-body" id="chat">
-                                    <p>{renderMessage}</p>
+                                    <ChatRoom />
                                 </div>
                             </div>
                         </div>
@@ -140,6 +145,63 @@ function FireSale () {
         </ol>
     </div>
     )
+
+    function ChatRoom() {
+        const dummy = useRef();
+        const messagesRef = firestore.collection('messages');
+        const query = messagesRef.orderBy('createdAt').limit(25);
+      
+        const [messages] = useCollectionData(query, { idField: 'id' });
+      
+        const [formValue, setFormValue] = useState('');
+      
+      
+        const sendMessage = async (e) => {
+          e.preventDefault();
+      
+          //const { uid, photoURL } = auth.currentUser;
+      
+          await messagesRef.add({
+            text: formValue,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          })
+      
+          setFormValue('');
+          dummy.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      
+        return (<>
+          <main>
+      
+            {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+      
+            <span ref={dummy}></span>
+      
+          </main>
+      
+          <form onSubmit={sendMessage}>
+      
+            <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+      
+            <button type="submit" disabled={!formValue}>Send</button>
+      
+          </form>
+        </>)
+      }
+
+    //   chat message
+    function ChatMessage(props) {
+        const { text, uid, photoURL } = props.message;
+      
+        const messageClass = auth.currentUser ? 'sent' : 'received';
+      
+        return (<>
+          <div className={`message ${messageClass}`}>
+            <p>{text}</p>
+          </div>
+        </>)
+    }
+
 }
 
 export default FireSale
