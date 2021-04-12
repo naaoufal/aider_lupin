@@ -36,6 +36,7 @@ function UserHome () {
         fetch("http://localhost:3001/api/ads/randomAds").then(res => {
             return res.json()
         }).then(data => {
+            console.log(data)
             setAds(data)
         })
     }
@@ -83,7 +84,6 @@ function UserHome () {
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
-                        <li><div id="google_translate_element" className=""></div></li>
                         <li class="active"><Link onClick={clearStorage} className="btn">Sign out</Link></li>
                     </ul>
                 </div>
@@ -91,7 +91,9 @@ function UserHome () {
         </div>
         <header id="head" class="secondary"></header>
         <div className="container">
-            
+            <ol className="breadcrumb">
+                <li class="active"></li>
+            </ol>
 
             <header class="page-header">
                 {ads.map((i) => (
@@ -101,12 +103,13 @@ function UserHome () {
                 ))}
             </header>
 
-            {/* <div className="jumbotron top-space">
-                <h4>General Information :</h4>
-                <p>ID : {dt._id}</p>
+            <div className="jumbotron top-space">
+                <h4>Select Languages :</h4>
+                <div id="google_translate_element" className=""></div>
+                {/* <p>ID : {dt._id}</p>
                 <p>Full name : {dt.fullname}</p>
-                <p>Email : {dt.email}</p>
-            </div> */}
+                <p>Email : {dt.email}</p> */}
+            </div>
             
             <br /> <br />
             <div className="row">
@@ -117,7 +120,7 @@ function UserHome () {
                             <hr />
                             {products.map((i) => (
                                 <div className="col-sm-4">
-                                    <div className="panel panel-default">
+                                    <div className="panel panel-warning">
                                         <div className="panel-heading">
                                             <h2>{i.name}</h2>
                                         </div>
