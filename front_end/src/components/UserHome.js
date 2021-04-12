@@ -149,7 +149,7 @@ function UserHome () {
                         <div className="panel-body">
                             <h3 class="thin">Fire Sale</h3>
                             <hr />
-                            <Link className="btn btn-primary">Start the Fire Sale</Link>
+                            <Link to="/FireSale" className="btn btn-primary">Start the Fire Sale</Link>
                             <hr />
                         </div>
                     </div>

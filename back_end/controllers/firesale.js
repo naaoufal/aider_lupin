@@ -13,8 +13,7 @@ async function all (req, res) {
 async function add (req, res) {
     const firesale = new FireSale({
         name : req.body.name,
-        image : req.file.filename,
-        productType : req.body.productType,
+        image : req.body.image,
         price : req.body.price,
         desc : req.body.desc,
         idSeller : req.body.idSeller

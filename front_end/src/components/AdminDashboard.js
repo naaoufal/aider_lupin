@@ -93,11 +93,45 @@ function AdminDashboard () {
         console.log(id)
     }
 
+    // assign a new product to fire sale
+    function FireSaleMerket () {
+        fetch("http://localhost:3001/api/products/randomproduct").then(res => {
+                return res.json()
+            }).then(data => {
+                //console.log(data)
+                data.map(i => {
+                //console.log(i.image)
+                fetch("http://localhost:3001/api/firesale/add", {
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify({
+                        name : i.name,
+                        image : i.image,
+                        price : i.price,
+                        desc : i.desc,
+                        idSeller : i.idSeller
+                    })
+                }).then(res => {
+                    return res.json()
+                }).then(info => {
+                    if(info){
+                        alert("Product added successfully")
+                    } else {
+                        alert("Error")
+                    }
+                })
+            })
+        })
+    }
+
     useEffect(() => {
         if(token){
             fetchBuyers()
             fetchDelivery()
             renderProductData()
+            //FireSaleMerket()
         } else {
             history.push("/AdminLogin")
         }
@@ -305,6 +339,17 @@ function AdminDashboard () {
                                         ))}
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md text-center">
+                        <div className="panel panel-default">
+                            <div className="panel-body">
+                                <h3 className="thin">Add Product to FireSale :</h3>
+                                <hr />
+                                <button onClick={FireSaleMerket} className="btn btn-primary">Add Product</button>
                             </div>
                         </div>
                     </div>

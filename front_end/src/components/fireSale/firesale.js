@@ -29,15 +29,15 @@ function FireSale () {
 
     const [products, setProducts] = useState([])
     const [message, setMessage] = useState([])
+    const current = []
 
     function backHome () {
         localStorage.removeItem('productInfo')
         history.push("/Home")
     }
 
-    // render product data
-    function renderProductData () {
-        fetch("http://localhost:3001/api/products/randomproduct").then(res => {
+    function showData () {
+        fetch("http://localhost:3001/api/firesale/all").then(res => {
             return res.json()
         }).then(data => {
             setProducts(data)
@@ -76,9 +76,9 @@ function FireSale () {
 
 
     useEffect(() => {
-        console.log(message)
         // write some functions here !!!
-        renderProductData()
+        showData()
+        //renderProductData()
     }, [])
 
     return (
