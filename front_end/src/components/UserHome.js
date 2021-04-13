@@ -126,7 +126,7 @@ function UserHome () {
                                         </div>
                                         <div className="panel panel-body">
                                             <img src={"images/"+i.image} />
-                                            <p><input value={i.price} readonly="readonly" /> €</p>
+                                            <p>{i.price} €</p>
                                             <p>{i.desc}</p>
                                             {/* {checkout ? (
                                                 // run test

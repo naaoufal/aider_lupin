@@ -183,7 +183,7 @@ function AdminDashboard () {
                                             <td>Fullname</td>
                                             <td>Email</td>
                                             <td>Phone</td>
-                                            <td>Password</td>
+                                            {/* <td>Password</td> */}
                                             <td>Is_Reseted</td>
                                             <td>Role</td>
                                             <td>Actions</td>
@@ -196,7 +196,7 @@ function AdminDashboard () {
                                                 <td>{i.fullname}</td>
                                                 <td>{i.email}</td>
                                                 <td>{i.phone}</td>
-                                                <td>{i.password}</td>
+                                                {/* <td>{i.password}</td> */}
                                                 <td>{JSON.stringify(i.is_reseted)}</td>
                                                 <td>{i.role}</td>
                                                 <td><button className="btn btn-warning">Delete</button></td>
